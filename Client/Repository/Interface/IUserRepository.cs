@@ -4,7 +4,7 @@ using Common.DAO;
 
 namespace Client.Repository.Interface
 {
-	public interface IUserRepository : IRepository<User>
+	public interface IUserRepository
 	{
 		Task<bool> LoginAsync(UserForLogin obj);
 	}
