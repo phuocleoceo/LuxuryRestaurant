@@ -7,7 +7,7 @@ namespace Client.Repository.Implement
 {
     public class UserRepository : IUserRepository
     {
-        public Task<bool> LoginAsync(UserForLogin obj)
+        public Task<User> LoginAsync(UserForLogin obj)
         {
             throw new System.NotImplementedException();
         }

@@ -27,36 +27,36 @@ namespace Client.Repository.Implement
             });
         }
 
-        public Task<IEnumerable<Food>> GetAllAsync()
+        public async Task<IEnumerable<Food>> GetAllAsync()
         {
-            return Task.Run(() => list.Where(c => true));
+            return await Task.Run(() => list.Where(c => true));
         }
 
-        public Task<Food> GetAsync(int Id)
+        public async Task<Food> GetAsync(int Id)
         {
-            return Task.Run(() => list[0]);
+            return await Task.Run(() => list[0]);
         }
 
-        public Task<bool> CreateAsync(Food obj)
+        public async Task<bool> CreateAsync(Food obj)
         {
             list.Add(obj);
-            return Task.Run(() => true);
+            return await Task.Run(() => true);
         }
 
-        public Task<bool> UpdateAsync(int Id, Food obj)
+        public async Task<bool> UpdateAsync(int Id, Food obj)
         {
             Food f = list.Where(c=>c.Id==Id).FirstOrDefault();
             f.Name = obj.Name;
             f.Description = obj.Description;
             f.Price = obj.Price;
-            return Task.Run(() => true);
+            return await Task.Run(() => true);
         }
 
-        public Task<bool> DeleteAsync(int Id)
+        public async Task<bool> DeleteAsync(int Id)
         {
             Food f = list.Where(c => c.Id == Id).FirstOrDefault();
             list.Remove(f);
-            return Task.Run(() => true);
+            return await Task.Run(() => true);
         }
     }
 }
