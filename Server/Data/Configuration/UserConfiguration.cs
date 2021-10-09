@@ -14,15 +14,17 @@ namespace Server.Data.Configuration
                 {
                     Id = 1,
                     UserName = "admin",
+                    DisplayName = "Quản lý",
                     Password = "c4ca4238a0b923820dcc509a6f75849b",
                     Role = "Admin"
                 },
                 new User
                 {
                     Id = 2,
-                    UserName = "guest",
+                    UserName = "cus",
+                    DisplayName = "Bàn 1",
                     Password = "c4ca4238a0b923820dcc509a6f75849b",
-                    Role = "Guest"
+                    Role = "Customer"
                 }
             );
         }

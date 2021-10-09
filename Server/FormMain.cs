@@ -1,18 +1,13 @@
-﻿using Common.DAO;
-using Server.Repository.Implement;
-using System;
+﻿using Server.Repository.Implement;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Sockets;
 using Newtonsoft.Json;
+using Common.DAO;
+using System.Net;
+using System.IO;
+using System;
 
 namespace Server
 {
@@ -33,7 +28,7 @@ namespace Server
         {
             server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1308);
             server.Start(10);
-            lblHeader.Text=$"<< Server started at {server.LocalEndpoint} >>";
+            lblHeader.Text = $"<< Server started at {server.LocalEndpoint} >>";
         }
 
         private async Task InitStream()

@@ -19,8 +19,6 @@ namespace Client.Repository.Implement
         private StreamReader reader;
         private StreamWriter writer;
 
-        private List<Food> list = new List<Food>();
-
         private async Task InitStream()
         {
             client = new TcpClient();
@@ -40,8 +38,8 @@ namespace Client.Repository.Implement
                     Header = Constant.Get_All_Food,
                     Payload = 0
                 };
-                string rmjson = JsonConvert.SerializeObject(rm);
-                await writer.WriteLineAsync(rmjson);
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
 
                 string response = await reader.ReadLineAsync();
                 return JsonConvert.DeserializeObject<List<Food>>(response);
@@ -59,29 +57,110 @@ namespace Client.Repository.Implement
 
         public async Task<Food> GetAsync(int Id)
         {
-            return await Task.Run(() => list[0]);
+            try
+            {
+                await InitStream();
+                RequestModel<int> rm = new RequestModel<int>
+                {
+                    Header = Constant.Get_Food_By_Id,
+                    Payload = Id
+                };
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
+
+                string response = await reader.ReadLineAsync();
+                return JsonConvert.DeserializeObject<Food>(response);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
 
         public async Task<bool> CreateAsync(Food obj)
         {
-            list.Add(obj);
-            return await Task.Run(() => true);
+            try
+            {
+                await InitStream();
+                RequestModel<Food> rm = new RequestModel<Food>
+                {
+                    Header = Constant.Create_Food,
+                    Payload = obj
+                };
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
+
+                string response = await reader.ReadLineAsync();            
+                return JsonConvert.DeserializeObject<bool>(response);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
 
         public async Task<bool> UpdateAsync(Food obj)
         {
-            Food f = list.Where(c=>c.Id==obj.Id).FirstOrDefault();
-            f.Name = obj.Name;
-            f.Description = obj.Description;
-            f.Price = obj.Price;
-            return await Task.Run(() => true);
+            try
+            {
+                await InitStream();
+                RequestModel<Food> rm = new RequestModel<Food>
+                {
+                    Header = Constant.Update_Food,
+                    Payload = obj
+                };
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
+
+                string response = await reader.ReadLineAsync();
+                return JsonConvert.DeserializeObject<bool>(response);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
 
         public async Task<bool> DeleteAsync(int Id)
         {
-            Food f = list.Where(c => c.Id == Id).FirstOrDefault();
-            list.Remove(f);
-            return await Task.Run(() => true);
+            try
+            {
+                await InitStream();
+                RequestModel<int> rm = new RequestModel<int>
+                {
+                    Header = Constant.Delete_Food,
+                    Payload = Id
+                };
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
+
+                string response = await reader.ReadLineAsync();
+                return JsonConvert.DeserializeObject<bool>(response);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
     }
 }

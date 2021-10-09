@@ -1,5 +1,10 @@
-using System.Threading.Tasks;
 using Client.Repository.Interface;
+using System.Threading.Tasks;
+using System.Net.Sockets;
+using Common.Extension;
+using Newtonsoft.Json;
+using System.Net;
+using System.IO;
 using Common.BO;
 using Common.DAO;
 
@@ -7,9 +12,45 @@ namespace Client.Repository.Implement
 {
     public class UserRepository : IUserRepository
     {
-        public Task<User> LoginAsync(UserForLogin obj)
+        private TcpClient client;
+        private NetworkStream stream;
+        private StreamReader reader;
+        private StreamWriter writer;
+
+        private async Task InitStream()
         {
-            throw new System.NotImplementedException();
+            client = new TcpClient();
+            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1308);
+            stream = client.GetStream();
+            reader = new StreamReader(stream);
+            writer = new StreamWriter(stream) { AutoFlush = true };
+        }
+
+        public async Task<User> LoginAsync(UserForLogin obj)
+        {
+            try
+            {
+                await InitStream();
+                RequestModel<UserForLogin> rm = new RequestModel<UserForLogin>
+                {
+                    Header = Constant.Login,
+                    Payload = obj
+                };
+                string rmJson = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(rmJson);
+
+                string response = await reader.ReadLineAsync();
+                return JsonConvert.DeserializeObject<User>(response);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
     }
 }
