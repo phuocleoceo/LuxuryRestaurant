@@ -6,7 +6,7 @@ namespace Server.Repository.Interface
 {
 	public interface IFoodRepository
 	{
-		Task<IEnumerable<Food>> GetAllAsync();
+		Task<List<Food>> GetAllAsync();
 
 		Task<Food> GetAsync(int Id);
 

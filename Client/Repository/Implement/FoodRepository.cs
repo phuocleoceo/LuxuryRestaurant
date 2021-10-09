@@ -1,35 +1,60 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using Client.Repository.Interface;
+using Newtonsoft.Json;
 using Common.DAO;
+using Common.BO;
+using Common.Extension;
 
 namespace Client.Repository.Implement
 {
     public class FoodRepository : IFoodRepository
     {
-        //private TcpClient client;
-        //private NetworkStream stream;
-        //private StreamReader reader;
-        //private StreamWriter writer;
+        private TcpClient client;
+        private NetworkStream stream;
+        private StreamReader reader;
+        private StreamWriter writer;
 
         private List<Food> list = new List<Food>();
-        public FoodRepository()
+
+        private async Task InitStream()
         {
-            list.AddRange(new Food[]{
-                new Food{Id=1,Name="Trung chien",Price=10000,Description="Ngon",Image=new byte[5]},
-                new Food{Id=2,Name="Ca chien",Price=15000,Description="Ngon",Image=new byte[5]},
-                new Food{Id=3,Name="Thit chien",Price=12000,Description="Ngon",Image=new byte[5]},
-                new Food{Id=4,Name="Rau xao",Price=7000,Description="Ngon",Image=new byte[5]},
-                new Food{Id=5,Name="Canh ca chua",Price=1000,Description="Ngon",Image=new byte[5]},
-            });
+            client = new TcpClient();
+            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1308);
+            stream = client.GetStream();
+            reader = new StreamReader(stream);
+            writer = new StreamWriter(stream) { AutoFlush = true };
         }
 
-        public async Task<IEnumerable<Food>> GetAllAsync()
+        public async Task<List<Food>> GetAllAsync()
         {
-            return await Task.Run(() => list.Where(c => true));
+            try
+            {
+                await InitStream();
+                RequestModel<int> rm = new RequestModel<int>
+                {
+                    RequestType = Constant.Get_All_Food,
+                    Entity = 0
+                };
+                string rmjson = JsonConvert.SerializeObject(rm);
+                await writer.WriteAsync(rmjson);
+
+                string response = await reader.ReadLineAsync();                
+                return JsonConvert.DeserializeObject<List<Food>>(response);
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
 
         public async Task<Food> GetAsync(int Id)

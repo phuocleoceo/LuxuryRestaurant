@@ -18,7 +18,7 @@ namespace Client.Controllers
 
         public async Task<IActionResult> Index()
         {
-            IEnumerable<Food> list = await _rp.GetAllAsync();
+            List<Food> list = await _rp.GetAllAsync();
             return View(list);
         }
     }

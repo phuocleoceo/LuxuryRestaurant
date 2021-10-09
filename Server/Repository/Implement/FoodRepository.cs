@@ -15,7 +15,7 @@ namespace Server.Repository.Implement
             _db = new LuxuryContext();
         }
 
-        public async Task<IEnumerable<Food>> GetAllAsync()
+        public async Task<List<Food>> GetAllAsync()
         {
             return await _db.Foods.ToListAsync();
         }
