@@ -37,13 +37,13 @@ namespace Client.Repository.Implement
                 await InitStream();
                 RequestModel<int> rm = new RequestModel<int>
                 {
-                    RequestType = Constant.Get_All_Food,
-                    Entity = 0
+                    Header = Constant.Get_All_Food,
+                    Payload = 0
                 };
                 string rmjson = JsonConvert.SerializeObject(rm);
                 await writer.WriteAsync(rmjson);
 
-                string response = await reader.ReadLineAsync();                
+                string response = await reader.ReadLineAsync();
                 return JsonConvert.DeserializeObject<List<Food>>(response);
             }
             catch

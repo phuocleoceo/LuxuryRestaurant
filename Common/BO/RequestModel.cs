@@ -2,8 +2,8 @@
 {
     public class RequestModel<T>
     {
-        public string RequestType { get; set; }
+        public string Header { get; set; }
 
-        public T Entity { get; set; }
+        public T Payload { get; set; }
     }
 }

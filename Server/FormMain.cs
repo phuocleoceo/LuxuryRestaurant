@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.DAO;
+using Server.Repository.Implement;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +12,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace Server
 {
@@ -41,21 +44,26 @@ namespace Server
             writer = new StreamWriter(stream) { AutoFlush = true };
         }
 
-        private async Task Handle()
+        private async Task HandleConnect()
         {
             while (true)
             {
                 await InitStream();
-                string request = reader.ReadLine();
+                string request = await reader.ReadLineAsync();
                 lbMSG.Items.Add($">> Request from {worker.Client.RemoteEndPoint} : {request}");
+
+                List<Food> list = await (new FoodRepository()).GetAllAsync();
+                string response = JsonConvert.SerializeObject(list);
+                await writer.WriteAsync(response);
+
                 worker.Close();
             }
         }
 
-        private async Task FormMain_Load(object sender, EventArgs e)
+        private async void FormMain_Load(object sender, EventArgs e)
         {
             InitServer();
-            await Handle();
+            await HandleConnect();
         }
     }
 }
