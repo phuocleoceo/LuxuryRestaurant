@@ -31,10 +31,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<UserForLogin> rm = new RequestModel<UserForLogin>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Login,
-                    Payload = obj
+                    Payload = JsonConvert.SerializeObject(obj)
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);

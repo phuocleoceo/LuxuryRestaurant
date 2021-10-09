@@ -33,10 +33,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<int> rm = new RequestModel<int>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Get_All_Food,
-                    Payload = 0
+                    Payload = ""
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);
@@ -60,10 +60,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<int> rm = new RequestModel<int>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Get_Food_By_Id,
-                    Payload = Id
+                    Payload = Id.ToString()
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);
@@ -87,10 +87,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<Food> rm = new RequestModel<Food>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Create_Food,
-                    Payload = obj
+                    Payload = JsonConvert.SerializeObject(obj)
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);
@@ -114,10 +114,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<Food> rm = new RequestModel<Food>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Update_Food,
-                    Payload = obj
+                    Payload = JsonConvert.SerializeObject(obj)
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);
@@ -141,10 +141,10 @@ namespace Client.Repository.Implement
             try
             {
                 await InitStream();
-                RequestModel<int> rm = new RequestModel<int>
+                RequestModel rm = new RequestModel
                 {
                     Header = Constant.Delete_Food,
-                    Payload = Id
+                    Payload = Id.ToString()
                 };
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);

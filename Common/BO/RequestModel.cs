@@ -1,9 +1,9 @@
 ﻿namespace Common.BO
 {
-    public class RequestModel<T>
+    public class RequestModel
     {
         public string Header { get; set; }
 
-        public T Payload { get; set; }
+        public string Payload { get; set; }
     }
 }

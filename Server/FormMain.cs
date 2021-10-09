@@ -1,12 +1,10 @@
-﻿using Server.Repository.Implement;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using Newtonsoft.Json;
-using Common.DAO;
 using System.Net;
 using System.IO;
+using Common.BO;
 using System;
 
 namespace Server
@@ -47,10 +45,10 @@ namespace Server
                 string request = await reader.ReadLineAsync();
                 lbMSG.Items.Add($">> Request from {worker.Client.RemoteEndPoint} : {request}");
 
-                List<Food> list = await (new FoodRepository()).GetAllAsync();
-                string response = JsonConvert.SerializeObject(list);
-                await writer.WriteLineAsync(response);
+                RequestModel requestModel = JsonConvert.DeserializeObject<RequestModel>(request);
+                string response = await Routing.RouteAppRequest(requestModel);
 
+                await writer.WriteLineAsync(response);
                 worker.Close();
             }
         }
