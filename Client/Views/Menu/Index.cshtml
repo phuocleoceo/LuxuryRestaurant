@@ -11,7 +11,21 @@
             <div class="row p-2">
                 <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
                     <div class="card" style="border:0px;">
-                        <img src="" class="card-img-top rounded" style="width: 100%; height: 27vw; object-fit: cover;" />
+                        @if (p.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(p.Image);
+                            string imgsrc = "";
+                            if (string.IsNullOrEmpty(base64))
+                            {
+                                imgsrc = "https://via.placeholder.com/150";
+                            }
+                            else
+                            {
+                                imgsrc = $"data:image/jpg;base64,{base64}";
+                            }
+                            <img src=@imgsrc class="card-img-top rounded"
+                                 style="width: 100%; height: 25vw; object-fit: cover;" />
+                        }
                         <div class="pl-1">
                             <p class="card-title h5"><b style="color:#2c3e50">@p.Name</b></p>
                             <p class="card-title text-primary"><b>@p.Description</b></p>

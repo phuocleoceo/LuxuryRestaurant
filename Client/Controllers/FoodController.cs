@@ -1,8 +1,10 @@
 ﻿using Client.Repository.Interface;
 using Common.DAO;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -46,15 +48,42 @@ namespace Client.Controllers
         {
             if (ModelState.IsValid)
             {
+                IFormFileCollection files = HttpContext.Request.Form.Files;
+                if (files.Count > 0)
+                {
+                    byte[] pic = null;
+                    using (var fs = files[0].OpenReadStream())
+                    {
+                        using var ms = new MemoryStream();
+                        fs.CopyTo(ms);
+                        pic = ms.ToArray();
+                    }
+                    food.Image = pic;
+                }
+                else if (food.Id == 0)
+                {
+                    // If we're creating but not choose any Picture
+                    food.Image = null;
+                }
+                else
+                {
+                    //Reuse old picture if we're updating and not choose any Picture
+                    Food objFromDb = await _rp.GetAsync(food.Id);
+                    food.Image = objFromDb.Image;
+                }
+
+
                 if (food.Id == 0)
                 {
                     await _rp.CreateAsync(food);
+                    TempData["Alert"] = "Add Food Successfully !";
                 }
                 else
                 {
                     await _rp.UpdateAsync(food);
+                    TempData["Alert"] = "Edit Food Successfully !";
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View(food);
         }
@@ -67,6 +96,7 @@ namespace Client.Controllers
                 return NotFound();
             }
             await _rp.DeleteAsync(id);
+            TempData["Alert"] = "Delete Food Successfully !";
             return RedirectToAction("Index");
         }
     }

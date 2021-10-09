@@ -33,7 +33,7 @@ namespace Server
                     break;
                 case Constant.Update_Food:
                     Food fu = JsonConvert.DeserializeObject<Food>(requestModel.Payload);
-                    bool fu_success = await fr.CreateAsync(fu);
+                    bool fu_success = await fr.UpdateAsync(fu);
                     response = JsonConvert.SerializeObject(fu_success);
                     break;
                 case Constant.Delete_Food:
