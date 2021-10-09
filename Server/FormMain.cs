@@ -44,8 +44,9 @@ namespace Server
                 await InitStream();
                 string request = await reader.ReadLineAsync();
                 lbMSG.Items.Add($">> Request from {worker.Client.RemoteEndPoint} : {request}");
-
+                
                 RequestModel requestModel = JsonConvert.DeserializeObject<RequestModel>(request);
+                // Nếu header là đặt món thì lấy thông tin đưa vào listbox tại đây
                 string response = await Routing.RouteAppRequest(requestModel);
 
                 await writer.WriteLineAsync(response);

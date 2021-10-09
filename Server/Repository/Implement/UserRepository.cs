@@ -21,7 +21,8 @@ namespace Server.Repository.Implement
         {
             string un = obj.UserName;
             string pw = obj.Password.GetMD5();
-            User user = await _db.Users.SingleOrDefaultAsync(c => c.UserName == un && c.Password == pw);
+            User user = await _db.Users
+                        .SingleOrDefaultAsync(c => c.UserName == un && c.Password == pw);
             if (user == null)
             {
                 return null;
