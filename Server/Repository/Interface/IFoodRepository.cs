@@ -12,7 +12,7 @@ namespace Server.Repository.Interface
 
 		Task<bool> CreateAsync(Food obj);
 
-		Task<bool> UpdateAsync(int Id, Food obj);
+		Task<bool> UpdateAsync(Food obj);
 
 		Task<bool> DeleteAsync(int Id);
 

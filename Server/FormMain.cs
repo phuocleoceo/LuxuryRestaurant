@@ -54,7 +54,7 @@ namespace Server
 
                 List<Food> list = await (new FoodRepository()).GetAllAsync();
                 string response = JsonConvert.SerializeObject(list);
-                await writer.WriteAsync(response);
+                await writer.WriteLineAsync(response);
 
                 worker.Close();
             }

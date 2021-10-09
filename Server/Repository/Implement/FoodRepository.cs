@@ -31,12 +31,9 @@ namespace Server.Repository.Implement
             return await SaveAsync();
         }
 
-        public async Task<bool> UpdateAsync(int Id, Food obj)
+        public async Task<bool> UpdateAsync(Food obj)
         {
-            Food f = await GetAsync(Id);
-            f.Name = obj.Name;
-            f.Description = obj.Description;
-            f.Price = obj.Price;
+            _db.Foods.Update(obj);
             return await SaveAsync();
         }
 

@@ -71,7 +71,6 @@ namespace Server
         #endregion
 
         private System.Windows.Forms.Label lblHeader;
-        private System.Windows.Forms.ListBox lbl;
         private System.Windows.Forms.ListBox lbMSG;
     }
 }

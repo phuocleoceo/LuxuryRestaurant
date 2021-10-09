@@ -52,7 +52,7 @@ namespace Client.Controllers
                 }
                 else
                 {
-                    await _rp.UpdateAsync(food.Id, food);
+                    await _rp.UpdateAsync(food);
                 }
                 return RedirectToAction("Index");
             }

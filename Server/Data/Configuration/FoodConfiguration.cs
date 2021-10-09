@@ -24,7 +24,7 @@ namespace Server.Data.Configuration
                     Id = 2,
                     Name = "Cá chiên",
                     Price = 20000,
-                    Description = "Cũng được nhưng cần nước mắm ngon",
+                    Description = "Miễn là nước mắm ngon",
                     Image = Array.Empty<byte>()
                 },
                 new Food

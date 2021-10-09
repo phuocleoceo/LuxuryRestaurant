@@ -41,7 +41,7 @@ namespace Client.Repository.Implement
                     Payload = 0
                 };
                 string rmjson = JsonConvert.SerializeObject(rm);
-                await writer.WriteAsync(rmjson);
+                await writer.WriteLineAsync(rmjson);
 
                 string response = await reader.ReadLineAsync();
                 return JsonConvert.DeserializeObject<List<Food>>(response);
@@ -68,9 +68,9 @@ namespace Client.Repository.Implement
             return await Task.Run(() => true);
         }
 
-        public async Task<bool> UpdateAsync(int Id, Food obj)
+        public async Task<bool> UpdateAsync(Food obj)
         {
-            Food f = list.Where(c=>c.Id==Id).FirstOrDefault();
+            Food f = list.Where(c=>c.Id==obj.Id).FirstOrDefault();
             f.Name = obj.Name;
             f.Description = obj.Description;
             f.Price = obj.Price;
