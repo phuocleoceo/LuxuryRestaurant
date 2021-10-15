@@ -14,6 +14,15 @@ namespace Server
         public static async Task<string> RouteAppRequest(RequestModel requestModel)
         {
             string response = "";
+            string header = requestModel.Header;
+            if (header.EndsWith("Food")) response = await RoutingFood(requestModel);
+            if (header.EndsWith("User")) response = await RoutingUser(requestModel);
+            return response;
+        }
+
+        public static async Task<string> RoutingFood(RequestModel requestModel)
+        {
+            string response = "";
             FoodRepository fr = new FoodRepository();
             switch (requestModel.Header)
             {
@@ -40,6 +49,21 @@ namespace Server
                     int d_id = Convert.ToInt32(requestModel.Payload);
                     bool fd_success = await fr.DeleteAsync(d_id);
                     response = JsonConvert.SerializeObject(fd_success);
+                    break;
+            }
+            return response;
+        }
+
+        public static async Task<string> RoutingUser(RequestModel requestModel)
+        {
+            string response = "";
+            UserRepository ur = new UserRepository();
+            switch (requestModel.Header)
+            {
+                case Constant.Login:
+                    UserForLogin userFG = JsonConvert.DeserializeObject<UserForLogin>(requestModel.Payload);
+                    User user = await ur.LoginAsync(userFG);
+                    response = JsonConvert.SerializeObject(user);
                     break;
             }
             return response;

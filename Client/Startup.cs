@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Client.Repository.Implement;
 using Client.Repository.Interface;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Client
 {
@@ -25,12 +26,29 @@ namespace Client
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+			.AddCookie(options =>
+			{
+				options.Cookie.HttpOnly = true;
+				options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+				options.LoginPath = "/Home/Login";
+				options.LogoutPath = "/Home/Logout";
+				options.AccessDeniedPath = "/Home/AccessDenied";
+				options.SlidingExpiration = true;
+			});
 			services.AddHttpContextAccessor();
 
 			services.AddScoped<IFoodRepository, FoodRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+			services.AddSession(options =>
+			{
+				options.IdleTimeout = TimeSpan.FromMinutes(60);
+				options.Cookie.HttpOnly = true;
+				options.Cookie.IsEssential = true;
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +69,9 @@ namespace Client
 
 			app.UseRouting();
 
+			app.UseSession();
+
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
