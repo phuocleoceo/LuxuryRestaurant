@@ -24,6 +24,7 @@ namespace Client.Controllers
             return View(list);
         }
 
+
         [HttpGet]
         public async Task<IActionResult> Upsert(int? id)
         {
@@ -75,12 +76,18 @@ namespace Client.Controllers
 
                 if (food.Id == 0)
                 {
-                    await _rp.CreateAsync(food);
+                    if (!await _rp.CreateAsync(food))
+                    {
+                        return BadRequest();
+                    }
                     TempData["Alert"] = "Add Food Successfully !";
                 }
                 else
                 {
-                    await _rp.UpdateAsync(food);
+                    if (!await _rp.UpdateAsync(food))
+                    {
+                        return BadRequest();
+                    }
                     TempData["Alert"] = "Edit Food Successfully !";
                 }
                 return RedirectToAction(nameof(Index));
@@ -95,7 +102,10 @@ namespace Client.Controllers
             {
                 return NotFound();
             }
-            await _rp.DeleteAsync(id);
+            if (!await _rp.DeleteAsync(id))
+            {
+                return BadRequest();
+            }
             TempData["Alert"] = "Delete Food Successfully !";
             return RedirectToAction("Index");
         }

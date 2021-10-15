@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Server.Data.Configuration;
 using Common.DAO;
-using Microsoft.Extensions.Configuration;
 
 namespace Server.Data
 {
