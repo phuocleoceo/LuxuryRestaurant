@@ -3,6 +3,7 @@
 @{
     string IsLoggedInStr = httpAcc.HttpContext.Session.GetString("IsLoggedIn");
     bool IsLoggedIn = Convert.ToBoolean(IsLoggedInStr);
+    string DisplayName= httpAcc.HttpContext.Session.GetString("DisplayName");
 }
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -38,7 +39,7 @@
                     @if (IsLoggedIn)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark">Hello @User.Identity.Name</a>
+                            <a class="nav-link text-dark">Hello @DisplayName</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">Logout</a>

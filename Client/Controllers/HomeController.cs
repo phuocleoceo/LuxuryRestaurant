@@ -54,6 +54,7 @@ namespace Client.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
             HttpContext.Session.SetString("IsLoggedIn", "true");
+            HttpContext.Session.SetString("DisplayName", userLogin.DisplayName);
             TempData["Alert"] = "Welcome " + userLogin.UserName;
             return RedirectToAction(nameof(Index));
         }
@@ -62,6 +63,7 @@ namespace Client.Controllers
         {
             await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("IsLoggedIn", "false");
+            HttpContext.Session.SetString("DisplayName", "");
             TempData["Alert"] = "Logout Successfully !";
             return RedirectToAction(nameof(Index));
         }
