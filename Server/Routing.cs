@@ -17,6 +17,7 @@ namespace Server
             string header = requestModel.Header;
             if (header.EndsWith("Food")) response = await RoutingFood(requestModel);
             if (header.EndsWith("User")) response = await RoutingUser(requestModel);
+            if (header.EndsWith("Cart")) response = await RoutingCart(requestModel);
             return response;
         }
 
@@ -38,17 +39,17 @@ namespace Server
                 case Constant.Create_Food:
                     Food fc = JsonConvert.DeserializeObject<Food>(requestModel.Payload);
                     bool fc_success = await fr.CreateAsync(fc);
-                    response = JsonConvert.SerializeObject(fc_success);
+                    response = fc_success.ToString();
                     break;
                 case Constant.Update_Food:
                     Food fu = JsonConvert.DeserializeObject<Food>(requestModel.Payload);
                     bool fu_success = await fr.UpdateAsync(fu);
-                    response = JsonConvert.SerializeObject(fu_success);
+                    response = fu_success.ToString();
                     break;
                 case Constant.Delete_Food:
                     int d_id = Convert.ToInt32(requestModel.Payload);
                     bool fd_success = await fr.DeleteAsync(d_id);
-                    response = JsonConvert.SerializeObject(fd_success);
+                    response = fd_success.ToString();
                     break;
             }
             return response;
@@ -64,6 +65,41 @@ namespace Server
                     UserForLogin userFG = JsonConvert.DeserializeObject<UserForLogin>(requestModel.Payload);
                     User user = await ur.LoginAsync(userFG);
                     response = JsonConvert.SerializeObject(user);
+                    break;
+            }
+            return response;
+        }
+
+        public static async Task<string> RoutingCart(RequestModel requestModel)
+        {
+            string response = "";
+            CartRepository cr = new CartRepository();
+            switch (requestModel.Header)
+            {
+                case Constant.Get_Carts:
+                    int UserId = Convert.ToInt32(requestModel.Payload);
+                    List<ShoppingCart> listCart = await cr.GetCarts(UserId);
+                    response = JsonConvert.SerializeObject(listCart);
+                    break;
+                case Constant.Add_To_Cart:
+                    ShoppingCart cart = JsonConvert.DeserializeObject<ShoppingCart>(requestModel.Payload);
+                    bool atc_success = await cr.AddToCart(cart);
+                    response = atc_success.ToString();
+                    break;
+                case Constant.Plus_Cart:
+                    int p_cartId = Convert.ToInt32(requestModel.Payload);
+                    bool p_success = await cr.PlusCart(p_cartId);
+                    response = p_success.ToString();
+                    break;
+                case Constant.Minus_Cart:
+                    int m_cartId = Convert.ToInt32(requestModel.Payload);
+                    bool m_success = await cr.MinusCart(m_cartId);
+                    response = m_success.ToString();
+                    break;
+                case Constant.Remove_Cart:
+                    int r_cartId = Convert.ToInt32(requestModel.Payload);
+                    bool r_success = await cr.RemoveCart(r_cartId);
+                    response = r_success.ToString();
                     break;
             }
             return response;

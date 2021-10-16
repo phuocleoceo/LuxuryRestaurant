@@ -40,6 +40,7 @@ namespace Client
 
 			services.AddScoped<IFoodRepository, FoodRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<ICartRepository, CartRepository>();
 
 			services.AddControllersWithViews().AddRazorRuntimeCompilation();
 

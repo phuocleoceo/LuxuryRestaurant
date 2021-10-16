@@ -23,11 +23,11 @@ namespace Common.DAO
 
         public bool IsPaid { get; set; }
 
-        public ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        //public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
-        public Order()
-        {
-            ShoppingCarts = new HashSet<ShoppingCart>();
-        }
+        //public Order()
+        //{
+        //    ShoppingCarts = new List<ShoppingCart>();
+        //}
     }
 }

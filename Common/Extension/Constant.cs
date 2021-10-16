@@ -12,5 +12,11 @@
         public const string Delete_Food = "Delete Food";
 
         public const string Login = "Login User";
+
+        public const string Get_Carts = "Get Cart";
+        public const string Add_To_Cart = "Add To Cart";
+        public const string Plus_Cart = "Plus Cart";
+        public const string Minus_Cart = "Minus Cart";
+        public const string Remove_Cart = "Remove Cart";
     }
 }

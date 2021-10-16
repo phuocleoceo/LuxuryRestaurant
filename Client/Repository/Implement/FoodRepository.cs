@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Common.DAO;
 using Common.BO;
 using Common.Extension;
+using System;
 
 namespace Client.Repository.Implement
 {
@@ -96,7 +97,7 @@ namespace Client.Repository.Implement
                 await writer.WriteLineAsync(rmJson);
 
                 string response = await reader.ReadLineAsync();            
-                return JsonConvert.DeserializeObject<bool>(response);
+                return Convert.ToBoolean(response);
             }
             catch
             {
@@ -123,7 +124,7 @@ namespace Client.Repository.Implement
                 await writer.WriteLineAsync(rmJson);
 
                 string response = await reader.ReadLineAsync();
-                return JsonConvert.DeserializeObject<bool>(response);
+                return Convert.ToBoolean(response);
             }
             catch
             {
@@ -150,7 +151,7 @@ namespace Client.Repository.Implement
                 await writer.WriteLineAsync(rmJson);
 
                 string response = await reader.ReadLineAsync();
-                return JsonConvert.DeserializeObject<bool>(response);
+                return Convert.ToBoolean(response);
             }
             catch
             {

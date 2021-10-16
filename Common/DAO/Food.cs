@@ -20,7 +20,7 @@ namespace Common.DAO
 
 		public Food()
 		{
-			ShoppingCarts = new HashSet<ShoppingCart>();
+			ShoppingCarts = new List<ShoppingCart>();
 		}
 	}
 }

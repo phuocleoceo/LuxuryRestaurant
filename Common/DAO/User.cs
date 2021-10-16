@@ -22,8 +22,8 @@ namespace Common.DAO
 
 		public User()
 		{
-			ShoppingCarts = new HashSet<ShoppingCart>();
-			Orders = new HashSet<Order>();
+			ShoppingCarts = new List<ShoppingCart>();
+			Orders = new List<Order>();
 		}
 	}
 }
