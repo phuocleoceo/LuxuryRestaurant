@@ -10,8 +10,8 @@ using Server.Data;
 namespace Server.Migrations
 {
     [DbContext(typeof(LuxuryContext))]
-    [Migration("20211008172126_Init")]
-    partial class Init
+    [Migration("20211016061948_CartOrderss")]
+    partial class CartOrderss
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,7 @@ namespace Server.Migrations
                         new
                         {
                             Id = 2,
-                            Description = "Cũng được nhưng cần nước mắm ngon",
+                            Description = "Miễn là nước mắm ngon",
                             Image = new byte[0],
                             Name = "Cá chiên",
                             Price = 20000.0
@@ -87,6 +87,62 @@ namespace Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Common.DAO.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Common.DAO.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FoodId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FoodId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
             modelBuilder.Entity("Common.DAO.User", b =>
                 {
                     b.Property<int>("Id")
@@ -114,6 +170,7 @@ namespace Server.Migrations
                         new
                         {
                             Id = 1,
+                            DisplayName = "Quản lý",
                             Password = "c4ca4238a0b923820dcc509a6f75849b",
                             Role = "Admin",
                             UserName = "admin"
@@ -121,10 +178,70 @@ namespace Server.Migrations
                         new
                         {
                             Id = 2,
+                            DisplayName = "Bàn 1",
                             Password = "c4ca4238a0b923820dcc509a6f75849b",
-                            Role = "Guest",
-                            UserName = "guest"
+                            Role = "Customer",
+                            UserName = "ban1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayName = "Bàn 2",
+                            Password = "c4ca4238a0b923820dcc509a6f75849b",
+                            Role = "Customer",
+                            UserName = "ban2"
                         });
+                });
+
+            modelBuilder.Entity("Common.DAO.Order", b =>
+                {
+                    b.HasOne("Common.DAO.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Common.DAO.ShoppingCart", b =>
+                {
+                    b.HasOne("Common.DAO.Food", "Food")
+                        .WithMany("ShoppingCarts")
+                        .HasForeignKey("FoodId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Common.DAO.Order", "Order")
+                        .WithMany("ShoppingCarts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Common.DAO.User", null)
+                        .WithMany("ShoppingCarts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Food");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("Common.DAO.Food", b =>
+                {
+                    b.Navigation("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("Common.DAO.Order", b =>
+                {
+                    b.Navigation("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("Common.DAO.User", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("ShoppingCarts");
                 });
 #pragma warning restore 612, 618
         }
