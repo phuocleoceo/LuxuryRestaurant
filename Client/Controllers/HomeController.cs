@@ -48,6 +48,7 @@ namespace Client.Controllers
             }
 
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userLogin.Id.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.Name, userLogin.UserName));
             identity.AddClaim(new Claim(ClaimTypes.Role, userLogin.Role));
             var principal = new ClaimsPrincipal(identity);
