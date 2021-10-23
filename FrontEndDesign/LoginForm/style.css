@@ -17,7 +17,8 @@ section {
 }
 section .color {
   position: absolute;
-  filter: blur(150px);
+  background-color: #fff;
+  /* filter: blur(150px); */
 }
 section .color:nth-child(1) {
   top: -350px;
