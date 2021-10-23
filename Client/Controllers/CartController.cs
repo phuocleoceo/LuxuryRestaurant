@@ -27,18 +27,26 @@ namespace Client.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddToCart(ShoppingCart cart)
+        public async Task<IActionResult> AddToCart(int FoodId)
         {
             ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
             Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            cart.UserId = Convert.ToInt32(claim.Value);
-            if (!await _rp.AddToCart(cart)) 
+            if (claim == null)
             {
-                return BadRequest();          
+                return Json(new { success = false, message = "Please Login First" });
+            }
+            ShoppingCart cart = new ShoppingCart()
+            {
+                FoodId = FoodId,
+                UserId = Convert.ToInt32(claim.Value)
+            };
+            if (!await _rp.AddToCart(cart))
+            {
+                return Json(new { success = false, message = "Add To Cart Failure" });
             }
             List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
             HttpContext.Session.SetInt32("ShoppingCart", list.Count);
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true, message = "Added To Cart" });
         }
 
         [HttpPost]
