@@ -24,7 +24,7 @@ namespace Server
 
         private void InitServer()
         {
-            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1308);
+            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1008);
             server.Start(10);
             lblHeader.Text = $"<< Server started at {server.LocalEndpoint} >>";
         }

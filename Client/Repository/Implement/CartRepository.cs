@@ -23,7 +23,7 @@ namespace Client.Repository.Implement
         private async Task InitStream()
         {
             client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1308);
+            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1008);
             stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream) { AutoFlush = true };
