@@ -1,5 +1,6 @@
 ﻿using Client.Repository.Interface;
 using Common.DAO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Client.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly ICartRepository _rp;
@@ -54,9 +56,9 @@ namespace Client.Controllers
         {
             if (!await _rp.PlusCart(cartId))
             {
-                return BadRequest();
+                return Json(new { success = false, message = "Plus Cart Failure" });
             }
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true, message = "Plus Cart Success" });
         }
 
         [HttpPost]
@@ -64,9 +66,9 @@ namespace Client.Controllers
         {
             if (!await _rp.MinusCart(cartId))
             {
-                return BadRequest();
+                return Json(new { success = false, message = "Minus Cart Failure" });
             }
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true, message = "Minus Cart Success" });
         }
 
         [HttpPost]
@@ -74,14 +76,14 @@ namespace Client.Controllers
         {
             if (!await _rp.RemoveCart(cartId))
             {
-                return BadRequest();
+                return Json(new { success = false, message = "Remove Cart Failure" });
             }
 
             ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
             Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
             HttpContext.Session.SetInt32("ShoppingCart", list.Count);
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true, message = "Remove Cart Success" });
         }
     }
 }

@@ -51,16 +51,15 @@ namespace Server.Repository.Implement
         public async Task<bool> MinusCart(int cartId)
         {
             ShoppingCart cart = await _db.ShoppingCarts.FirstOrDefaultAsync(c => c.Id == cartId);
-            if (cart == null || cart.Count <= 1) return false;
-            //if (cart.Count == 1)
-            //{
-            //    _db.ShoppingCarts.Remove(cart);
-            //}
-            //else
-            //{
-            //    cart.Count--;
-            //}
-            cart.Count--;
+            if (cart == null) return false;
+            if (cart.Count == 1)
+            {
+                _db.ShoppingCarts.Remove(cart);
+            }
+            else
+            {
+                cart.Count--;
+            }
             return await SaveAsync();
         }
 
