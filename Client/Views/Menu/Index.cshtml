@@ -35,10 +35,10 @@
                         </div>
                     </div>
                     <div>
-                        <a asp-action="Details" class="btn btn-primary form-control" asp-route-id="@p.Id">
+                        <button onclick="AddToCart(@p.Id)" class="btn btn-primary form-control">
                             Add To Cart
                             <i class="fas fa-cart-plus"></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -46,3 +46,6 @@
     }
 </div>
 
+@section Scripts{
+    <script src="~/js/menu.js"></script>
+}

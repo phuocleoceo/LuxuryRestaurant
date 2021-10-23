@@ -15,12 +15,5 @@ namespace Common.DAO
 		public double Price { get; set; }
 
 		public byte[] Image { get; set; }
-
-		public ICollection<ShoppingCart> ShoppingCarts { get; set; }
-
-		public Food()
-		{
-			ShoppingCarts = new List<ShoppingCart>();
-		}
 	}
 }

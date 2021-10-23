@@ -40,23 +40,28 @@ namespace Client.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(UserForLogin userFL)
         {
-            User userLogin = await _rp.LoginAsync(userFL);
-            if (userLogin == null)
+            if (ModelState.IsValid)
             {
-                TempData["Alert"] = "Login Failure ! Invalid Username or Password !";
-                return View();
+                User userLogin = await _rp.LoginAsync(userFL);
+                if (userLogin == null)
+                {
+                    TempData["Alert"] = "Login Failure ! Invalid Username or Password !";
+                    return View();
+                }
+
+                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userLogin.Id.ToString()));
+                identity.AddClaim(new Claim(ClaimTypes.Name, userLogin.UserName));
+                identity.AddClaim(new Claim(ClaimTypes.Role, userLogin.Role));
+                var principal = new ClaimsPrincipal(identity);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+                HttpContext.Session.SetString("IsLoggedIn", "true");
+                HttpContext.Session.SetString("DisplayName", userLogin.DisplayName);
+                TempData["Alert"] = "Welcome " + userLogin.UserName;
+                return RedirectToAction(nameof(Index));
             }
-
-            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userLogin.Id.ToString()));
-            identity.AddClaim(new Claim(ClaimTypes.Name, userLogin.UserName));
-            identity.AddClaim(new Claim(ClaimTypes.Role, userLogin.Role));
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-            HttpContext.Session.SetString("IsLoggedIn", "true");
-            HttpContext.Session.SetString("DisplayName", userLogin.DisplayName);
-            TempData["Alert"] = "Welcome " + userLogin.UserName;
+            TempData["Alert"] = "Login Failure ! Invalid Username or Password !";
             return RedirectToAction(nameof(Index));
         }
 
