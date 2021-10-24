@@ -46,8 +46,6 @@ namespace Client.Controllers
             {
                 return Json(new { success = false, message = "Add To Cart Failure" });
             }
-            List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
-            HttpContext.Session.SetInt32("ShoppingCart", list.Count);
             return Json(new { success = true, message = "Added To Cart" });
         }
 
@@ -68,11 +66,6 @@ namespace Client.Controllers
             {
                 return Json(new { success = false, message = "Minus Cart Failure" });
             }
-
-            ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
-            Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
-            HttpContext.Session.SetInt32("ShoppingCart", list.Count);
             return Json(new { success = true, message = "Minus Cart Success" });
         }
 
@@ -83,11 +76,6 @@ namespace Client.Controllers
             {
                 return Json(new { success = false, message = "Remove Cart Failure" });
             }
-
-            ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
-            Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
-            HttpContext.Session.SetInt32("ShoppingCart", list.Count);
             return Json(new { success = true, message = "Remove Cart Success" });
         }
     }

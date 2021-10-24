@@ -12,11 +12,9 @@ namespace Client.Controllers
     public class MenuController : Controller
     {
         private readonly IFoodRepository _rp;
-        private readonly ICartRepository _rp_cart;
-        public MenuController(IFoodRepository rp, ICartRepository rp_cart)
+        public MenuController(IFoodRepository rp)
         {
             _rp = rp;
-            _rp_cart = rp_cart;
         }
 
         public async Task<IActionResult> Index()

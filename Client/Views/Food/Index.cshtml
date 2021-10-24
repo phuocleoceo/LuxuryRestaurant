@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<Food>
 @{
     ViewData["Title"] = "Food";
+    ViewData["HomeActive"] = "";
+    ViewData["MenuActive"] = "";
+    ViewData["FoodActive"] = "active";
 }
 <br />
 <div class="row">
@@ -28,24 +31,24 @@
         </thead>
         <tbody>
             @foreach (Food f in Model)
-            { 
-            <tr>
-                <td>@f.Name</td>
-                <td>@f.Price</td>
-                <td>@f.Description</td>
-                <td>
-                    &nbsp; &nbsp; &nbsp; &nbsp;
-                    <a asp-action="Upsert" asp-route-id="@f.Id" class="btn btn-success text-white" style="cursor:pointer">
-                        <i class="fas fa-edit"></i>
-                    </a> &nbsp; &nbsp;
-                    <a asp-action="Delete" asp-route-id="@f.Id" class="btn btn-danger text-white"
-                       data-toggle="modal" data-id="@f.Id"
-                       data-target="#delete-modal"
-                       style="cursor:pointer">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
+            {
+                <tr>
+                    <td>@f.Name</td>
+                    <td>@f.Price</td>
+                    <td>@f.Description</td>
+                    <td>
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <a asp-action="Upsert" asp-route-id="@f.Id" class="btn btn-success text-white" style="cursor:pointer">
+                            <i class="fas fa-edit"></i>
+                        </a> &nbsp; &nbsp;
+                        <a asp-action="Delete" asp-route-id="@f.Id" class="btn btn-danger text-white"
+                           data-toggle="modal" data-id="@f.Id"
+                           data-target="#delete-modal"
+                           style="cursor:pointer">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

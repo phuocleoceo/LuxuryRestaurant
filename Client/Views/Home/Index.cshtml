@@ -1,8 +1,56 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    ViewData["HomeActive"] = "active";
+    ViewData["MenuActive"] = "";
+    ViewData["FoodActive"] = "";
 }
+@section MYCSS{
+    <link href="https://unpkg.com/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="@Url.Content("~/css/home.css")" rel="stylesheet" />
+}
+<div class="HomePage">
+    <section class="home" id="home">
+        <div class="swiper-container home-slider">
+            <div class="swiper-wrapper wrapper">
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>About Luxury Restaurant</span>
+                        <h3>Location</h3>
+                        <p>Located in The Pointe, Dubai, Asian restaurant Mama Pho exudes a casually contemporary vibe. Aces of Space designed the restaurant with a balance of unpolished authenticity and well-crafted design, further accentuated with unique Asian elements. </p>
+                    </div>
+                    <div class="image">
+                        <img src="https://ltd-01.b-cdn.net/wp-content/uploads/2020/05/Love-that-design-Mama-Pho-Restaurant-02.jpg" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>About Luxury Restaurant</span>
+                        <h3>Viewer</h3>
+                        <p>Live cooking was fundamental to the clients, so the kitchen was designed as an open area, delighting guests with an entertaining view. </p>
+                    </div>
+                    <div class="image">
+                        <img src="https://ltd-01.b-cdn.net/wp-content/uploads/2020/05/Love-that-design-Mama-Pho-Restaurant-13.jpg" alt="">
+                    </div>
+                </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>About Luxury Restaurant</span>
+                        <h3>Luxurious spaces</h3>
+                        <p>Smaller seating zones create comfortable pockets, giving the large bar area a more intimate feel. And the overall colour scheme gives a soothing, forest appeal. </p>
+                    </div>
+                    <div class="image">
+                        <img src="https://ltd-01.b-cdn.net/wp-content/uploads/2020/05/Love-that-design-Mama-Pho-Restaurant-01.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
 </div>
+
+@section Scripts{
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="~/js/home.js"></script>
+}

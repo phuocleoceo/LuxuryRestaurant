@@ -18,12 +18,10 @@ namespace Client.Controllers
     public class HomeController : Controller
     {
         private readonly IUserRepository _rp;
-        private readonly ICartRepository _rp_cart;
 
-        public HomeController(IUserRepository rp, ICartRepository rp_cart)
+        public HomeController(IUserRepository rp)
         {
             _rp = rp;
-            _rp_cart = rp_cart;
         }
 
         public IActionResult Index()
@@ -61,9 +59,6 @@ namespace Client.Controllers
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 HttpContext.Session.SetString("DisplayName", userLogin.DisplayName);
                 TempData["Alert"] = "Welcome " + userLogin.UserName;
-
-                List<ShoppingCart> list = await _rp_cart.GetCarts(userLogin.Id);
-                HttpContext.Session.SetInt32("ShoppingCart", list.Count);
 
                 return RedirectToAction(nameof(Index));
             }
