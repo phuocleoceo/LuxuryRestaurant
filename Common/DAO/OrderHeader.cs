@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Common.DAO
 {
-    public class Order
+    public class OrderHeader
     {
         [Key]
         public int Id { get; set; }
@@ -19,11 +20,11 @@ namespace Common.DAO
 
         public bool IsPaid { get; set; }
 
-        //public ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
-        //public Order()
-        //{
-        //    ShoppingCarts = new List<ShoppingCart>();
-        //}
+        public OrderHeader()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
     }
 }

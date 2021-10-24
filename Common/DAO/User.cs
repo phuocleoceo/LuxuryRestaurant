@@ -18,12 +18,12 @@ namespace Common.DAO
 
 		public ICollection<ShoppingCart> ShoppingCarts { get; set; }
 
-		public ICollection<Order> Orders { get; set; }
+		public ICollection<OrderHeader> OrderHeaders { get; set; }
 
 		public User()
 		{
 			ShoppingCarts = new List<ShoppingCart>();
-			Orders = new List<Order>();
+			OrderHeaders = new List<OrderHeader>();
 		}
 	}
 }
