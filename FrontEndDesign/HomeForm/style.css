@@ -24,6 +24,7 @@ html {
   scroll-behavior: smooth;
 }
 section {
+  margin-top: 7.5rem;
   padding: 2 rem 9%;
 }
 section:nth-child(even) {
