@@ -30,3 +30,15 @@ function RemoveCart(CartId) {
         }
     });
 }
+
+function PlaceOrder(CartId) {
+    $.post("Cart/PlaceOrder", { }, (data) => {
+        if (data.success) {
+            toastr.success(data.message);
+            location.reload();
+        }
+        else {
+            toastr.error(data.message);
+        }
+    });
+}

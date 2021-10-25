@@ -15,9 +15,12 @@ namespace Client.Controllers
     public class CartController : Controller
     {
         private readonly ICartRepository _rp;
-        public CartController(ICartRepository rp)
+        private readonly IOrderRepository _rp_order;
+
+        public CartController(ICartRepository rp, IOrderRepository rp_order)
         {
             _rp = rp;
+            _rp_order = rp_order;
         }
 
         public async Task<IActionResult> Index()
@@ -77,6 +80,19 @@ namespace Client.Controllers
                 return Json(new { success = false, message = "Remove Cart Failure" });
             }
             return Json(new { success = true, message = "Remove Cart Success" });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PlaceOrder()
+        {
+            ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
+            Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            int UserId = Convert.ToInt32(claim.Value);
+            if (!await _rp_order.PlaceOrder(UserId))
+            {
+                return Json(new { success = false, message = "Place Order Failure" });
+            }
+            return Json(new { success = true, message = "Place Order Success" });
         }
     }
 }
