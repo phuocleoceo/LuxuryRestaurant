@@ -18,5 +18,7 @@
         public const string Plus_Cart = "Plus Cart";
         public const string Minus_Cart = "Minus Cart";
         public const string Remove_Cart = "Remove Cart";
+
+        public const string Place_Order = "Place Order";
     }
 }

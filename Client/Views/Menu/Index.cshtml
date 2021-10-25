@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<Food>
 @{
     ViewData["Title"] = "Menu";
-    ViewData["HomeActive"]= "";
+    ViewData["HomeActive"] = "";
     ViewData["MenuActive"] = "active";
     ViewData["FoodActive"] = "";
 }
-
-<div class="row pb-3 backgroundWhite">
+@section MYCSS{
+    <link href="@Url.Content("~/css/menu.css")" rel="stylesheet" />
+}
+<div class="row pb-3 backgroundWhite foodlist">
 
     @foreach (Food p in Model)
     {

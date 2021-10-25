@@ -18,6 +18,7 @@ namespace Server
             if (header.EndsWith("Food")) response = await RoutingFood(requestModel);
             if (header.EndsWith("User")) response = await RoutingUser(requestModel);
             if (header.EndsWith("Cart")) response = await RoutingCart(requestModel);
+            if (header.EndsWith("Order")) response = await RoutingOrder(requestModel);
             return response;
         }
 
@@ -100,6 +101,21 @@ namespace Server
                     int r_cartId = Convert.ToInt32(requestModel.Payload);
                     bool r_success = await cr.RemoveCart(r_cartId);
                     response = r_success.ToString();
+                    break;
+            }
+            return response;
+        }
+
+        public static async Task<string> RoutingOrder(RequestModel requestModel)
+        {
+            string response = "";
+            OrderRepository or = new OrderRepository();
+            switch (requestModel.Header)
+            {
+                case Constant.Place_Order:
+                    int po_userId = Convert.ToInt32(requestModel.Payload);
+                    bool po_success = await or.PlaceOrder(po_userId);
+                    response = po_success.ToString();
                     break;
             }
             return response;

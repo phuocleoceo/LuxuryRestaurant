@@ -23,6 +23,6 @@ namespace Common.DAO
 
         public int Count { get; set; }
 
-        public double Total { get; set; }
+        public double Price { get; set; }
     }
 }

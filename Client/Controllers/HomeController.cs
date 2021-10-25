@@ -49,11 +49,11 @@ namespace Client.Controllers
                     return View();
                 }
 
-                var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
+                ClaimsIdentity identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userLogin.Id.ToString()));
                 identity.AddClaim(new Claim(ClaimTypes.Name, userLogin.UserName));
                 identity.AddClaim(new Claim(ClaimTypes.Role, userLogin.Role));
-                var principal = new ClaimsPrincipal(identity);
+                ClaimsPrincipal principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
                 HttpContext.Session.SetString("IsLoggedIn", "true");
@@ -71,7 +71,6 @@ namespace Client.Controllers
             await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("IsLoggedIn", "false");
             HttpContext.Session.SetString("DisplayName", "");
-            HttpContext.Session.SetInt32("ShoppingCart", 0);
             TempData["Alert"] = "Logout Successfully !";
             return RedirectToAction(nameof(Index));
         }

@@ -1,13 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Common.DAO;
+using Microsoft.EntityFrameworkCore;
+using Server.Data;
+using Server.Repository.Interface;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Server.Repository.Implement
 {
-    public class OrderRepository
+    public class OrderRepository : IOrderRepository
     {
+        private readonly LuxuryContext _db;
+        public OrderRepository()
+        {
+            _db = new LuxuryContext();
+        }
 
+        public async Task<bool> PlaceOrder(int UserId)
+        {
+            OrderHeader orderHeader = new OrderHeader()
+            {
+                UserId = UserId,
+                OrderDate = DateTime.Now,
+                IsPaid = false
+            };
+            await _db.OrderHeaders.AddAsync(orderHeader);
+            await _db.SaveChangesAsync();
+
+            await _db.ShoppingCarts.Where(c => c.UserId == UserId)
+                .Include(c => c.Food).ForEachAsync(c=>
+                {
+                    OrderDetail orderDetail = new OrderDetail()
+                    {
+                        FoodId = c.FoodId,
+                        OrderHeaderId = orderHeader.Id,
+                        Price = c.Food.Price,
+                        Count = c.Count
+                    };
+                    orderHeader.OrderTotal += orderDetail.Count * orderDetail.Price;
+                    _db.OrderDetails.Add(orderDetail);
+                    _db.ShoppingCarts.Remove(c);
+                });
+            return await SaveAsync();
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            return await _db.SaveChangesAsync() >= 0;
+        }
     }
 }
