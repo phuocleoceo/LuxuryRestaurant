@@ -21,7 +21,7 @@ namespace Server
             _fr = Program.GetService<IFoodRepository>();
             _ur = Program.GetService<IUserRepository>();
             _cr = Program.GetService<ICartRepository>();
-            _or = Program.GetService<OrderRepository>();
+            _or = Program.GetService<IOrderRepository>();
         }
 
         public async Task<string> RouteAppRequest(RequestModel requestModel)
