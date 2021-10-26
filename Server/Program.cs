@@ -1,22 +1,43 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Server.Repository.Implement;
+using Server.Repository.Interface;
 using System.Windows.Forms;
+using System;
+using Server.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server
 {
     static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        public static IServiceProvider ServiceProvider { get; set; }
+
+        static void ConfigureServices()
+        {
+            ServiceCollection services = new ServiceCollection();
+            //services.AddDbContext<LuxuryContext>(options =>
+            //{
+            //    options.UseSqlServer();
+            //});
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFoodRepository, FoodRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            ServiceProvider = services.BuildServiceProvider();
+        }
+
+        public static T GetService<T>() where T : class
+        {
+            return (T)ServiceProvider.GetService(typeof(T));
+        }
+
         [STAThread]
         static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            ConfigureServices();
             Application.Run(new FormMain());
         }
     }
