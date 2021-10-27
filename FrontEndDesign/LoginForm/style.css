@@ -18,27 +18,27 @@ section {
 section .color {
   position: absolute;
   background-color: #fff;
-  /* filter: blur(150px); */
+  filter: blur(150px);
 }
 section .color:nth-child(1) {
   top: -350px;
   width: 600px;
   height: 600px;
-  background: #470c14;
+  background: #2e793e;
 }
 section .color:nth-child(2) {
   bottom: -150px;
   left: 100px;
   width: 500px;
   height: 500px;
-  background: #926c1a;
+  background: #2f5524;
 }
 section .color:nth-child(3) {
   bottom: 50px;
   right: 100px;
   width: 300px;
   height: 300px;
-  background: #0d2f4e;
+  background: #78d378;
 }
 .box {
   position: relative;
