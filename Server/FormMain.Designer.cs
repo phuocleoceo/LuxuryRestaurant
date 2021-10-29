@@ -37,7 +37,7 @@ namespace Server
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblHeader.Location = new System.Drawing.Point(62, 13);
+            this.lblHeader.Location = new System.Drawing.Point(317, 9);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(52, 21);
             this.lblHeader.TabIndex = 0;
@@ -47,16 +47,16 @@ namespace Server
             // 
             this.lbMSG.FormattingEnabled = true;
             this.lbMSG.ItemHeight = 21;
-            this.lbMSG.Location = new System.Drawing.Point(25, 45);
+            this.lbMSG.Location = new System.Drawing.Point(534, 55);
             this.lbMSG.Name = "lbMSG";
-            this.lbMSG.Size = new System.Drawing.Size(582, 361);
+            this.lbMSG.Size = new System.Drawing.Size(254, 403);
             this.lbMSG.TabIndex = 1;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 424);
+            this.ClientSize = new System.Drawing.Size(800, 489);
             this.Controls.Add(this.lbMSG);
             this.Controls.Add(this.lblHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
