@@ -49,7 +49,7 @@
             <h3 class="title"> cart total </h3>
             <div class="box">
                 <h3 class="total"> total : <span>@Model.Sum(c => c.Count * c.Food.Price).ToString()</span> </h3>
-                <button class="btn" onclick="PlaceOrder()">proceed to checkout</button>
+                <button class="btn" onclick="PlaceOrder()">Place Order</button>
             </div>
         </div>
     </section>

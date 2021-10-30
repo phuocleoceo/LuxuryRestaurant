@@ -21,7 +21,7 @@
     @if (IsLoggedIn)
     {
         <div class="icons">
-            <a>Hello @DisplayName</a>
+            <a style="font-size:20px">@DisplayName</a>
             <a asp-controller="Cart" asp-action="Index" class="fas fa-shopping-cart"></a>
             <a asp-controller="Home" asp-action="Logout" class="fas fa-sign-out-alt"></a>
         </div>

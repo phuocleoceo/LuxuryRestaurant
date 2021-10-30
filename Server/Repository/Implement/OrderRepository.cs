@@ -5,7 +5,6 @@ using Server.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Server.Repository.Implement
@@ -48,7 +47,7 @@ namespace Server.Repository.Implement
 
         public async Task<OrderHeader> GetOrderOfUser(int UserId)
         {
-            return await _db.OrderHeaders.Include(c => c.OrderDetails)
+            return await _db.OrderHeaders
                 .FirstOrDefaultAsync(c => c.UserId == UserId && !c.IsPaid);
         }
 

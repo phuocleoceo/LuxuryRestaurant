@@ -39,8 +39,8 @@ namespace Server.Repository.Implement
 
         public async Task<List<User>> LoadUserWithOrder()
         {
-            return await _db.Users.Include(c => c.OrderHeaders)
-                        .Where(c => c.Role == Constant.Role_Customer).ToListAsync();
+            return await _db.Users
+                .Where(c => c.Role == Constant.Role_Customer).ToListAsync();
         }
 
         public async Task<bool> SaveAsync()

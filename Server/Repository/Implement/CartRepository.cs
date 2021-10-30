@@ -26,7 +26,7 @@ namespace Server.Repository.Implement
 
         public async Task<bool> AddToCart(ShoppingCart cart)
         {
-            ShoppingCart scFromDB = await _db.ShoppingCarts.Include(c => c.Food)
+            ShoppingCart scFromDB = await _db.ShoppingCarts
                 .FirstOrDefaultAsync(c => c.UserId == cart.UserId && c.FoodId == cart.FoodId);
 
             if (scFromDB == null)

@@ -18,10 +18,10 @@ namespace Server
         private readonly IOrderRepository _or;
         public Routing()
         {
-            _fr = Program.GetService<IFoodRepository>();
-            _ur = Program.GetService<IUserRepository>();
-            _cr = Program.GetService<ICartRepository>();
-            _or = Program.GetService<IOrderRepository>();
+            _fr = new FoodRepository();
+            _ur = new UserRepository();
+            _cr = new CartRepository();
+            _or = new OrderRepository();
         }
 
         public async Task<string> RouteAppRequest(RequestModel requestModel)

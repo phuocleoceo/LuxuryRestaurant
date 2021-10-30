@@ -12,6 +12,7 @@ using System.Net;
 using System.IO;
 using Common.BO;
 using System;
+using Server.Repository.Implement;
 
 namespace Server
 {
@@ -28,8 +29,8 @@ namespace Server
         public FormMain()
         {
             InitializeComponent();
-            _ur = Program.GetService<IUserRepository>();
-            _or = Program.GetService<IOrderRepository>();
+            _ur = new UserRepository();
+            _or = new OrderRepository();
         }
 
         private async void FormMain_Load(object sender, EventArgs e)
@@ -109,21 +110,14 @@ namespace Server
                         x = 10;
                         y += 60;
                     }
-                    if (listUser[i].OrderHeaders.Count > 0)
+                    OrderHeader order = await _or.GetOrderOfUser(listUser[i].Id);
+                    if (order == null)
                     {
-                        OrderHeader lastOrder = listUser[i].OrderHeaders.Last();
-                        if (!lastOrder.IsPaid)
-                        {
-                            btn.BackColor = ColorTranslator.FromHtml("red");
-                        }
-                        else
-                        {
-                            btn.BackColor = ColorTranslator.FromHtml("snow");
-                        }
+                        btn.BackColor = ColorTranslator.FromHtml("snow");
                     }
                     else
                     {
-                        btn.BackColor = ColorTranslator.FromHtml("snow");
+                        btn.BackColor = ColorTranslator.FromHtml("red");
                     }
                     btn.MouseClick += new MouseEventHandler(btnTable_MouseClick);
                     pnlTable.Controls.Add(btn);
@@ -158,7 +152,7 @@ namespace Server
                     };
                     y += 27;
                     pnlOrder.Controls.Add(lbl);
-                }                
+                }
             }
         }
         #endregion
