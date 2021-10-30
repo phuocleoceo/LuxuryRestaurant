@@ -6,6 +6,7 @@ using Server.Data;
 using System.Linq;
 using Common.DAO;
 using Common.BO;
+using System.Collections.Generic;
 
 namespace Server.Repository.Implement
 {
@@ -29,6 +30,17 @@ namespace Server.Repository.Implement
             }
             user.Password = "";
             return user;
+        }
+
+        public async Task<User> FindUserById(int UserId)
+        {
+            return await _db.Users.FindAsync(UserId);
+        }
+
+        public async Task<List<User>> LoadUserWithOrder()
+        {
+            return await _db.Users.Include(c => c.OrderHeaders)
+                        .Where(c => c.Role == Constant.Role_Customer).ToListAsync();
         }
 
         public async Task<bool> SaveAsync()

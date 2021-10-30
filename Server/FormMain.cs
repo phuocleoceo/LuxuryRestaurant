@@ -9,6 +9,10 @@ using System.Net;
 using System.IO;
 using Common.BO;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using Server.Repository.Interface;
 
 namespace Server
 {
@@ -19,13 +23,24 @@ namespace Server
         private NetworkStream stream;
         private StreamReader reader;
         private StreamWriter writer;
-        private LuxuryContext _db;
+        private readonly IUserRepository _ur;
+        private readonly IOrderRepository _or;
 
         public FormMain()
         {
             InitializeComponent();
-            _db = new LuxuryContext();
+            _ur = Program.GetService<IUserRepository>();
+            _or = Program.GetService<IOrderRepository>();
         }
+
+        private async void FormMain_Load(object sender, EventArgs e)
+        {
+            await LoadTable();
+            InitServer();
+            await HandleConnect();
+        }
+
+        #region Socket
 
         private void InitServer()
         {
@@ -57,19 +72,74 @@ namespace Server
                 worker.Close();
             }
         }
+        #endregion
 
+        #region Order
         private async Task ShowOrder(RequestModel requestModel)
         {
             int UserId = Convert.ToInt32(requestModel.Payload);
-            User user = await _db.Users.FindAsync(UserId);
+            User user = await _ur.FindUserById(UserId);
             string msg = $">> {user.DisplayName} đã đặt món !";
             lbMSG.Items.Add(msg);
         }
 
-        private async void FormMain_Load(object sender, EventArgs e)
+        private async Task LoadTable()
         {
-            InitServer();
-            await HandleConnect();
+            try
+            {
+                List<User> listUser = await _ur.LoadUserWithOrder();
+                int x = 10;
+                int y = 10;
+                for (int i = 0; i < listUser.Count; i++)
+                {
+                    Button btn = new Button()
+                    {
+                        Name = "btnTable" + (i + 1),
+                        Text = listUser[i].DisplayName,
+                        Tag = listUser[i].Id,
+                        Width = 100,
+                        Height = 50,
+                        Location = new Point(x, y),
+                    };                    
+                    if (x < pnlTable.Width - 220)
+                    {
+                        x += 110;
+                    }
+                    else
+                    {
+                        x = 10;
+                        y += 60;
+                    }
+                    if (listUser[i].OrderHeaders.Count > 0)
+                    {
+                        OrderHeader lastOrder = listUser[i].OrderHeaders.Last();
+                        if (!lastOrder.IsPaid)
+                        {
+                            btn.BackColor = ColorTranslator.FromHtml("red");
+                        }
+                        else
+                        {
+                            btn.BackColor = ColorTranslator.FromHtml("snow");
+                        }
+                    }
+                    else
+                    {
+                        btn.BackColor = ColorTranslator.FromHtml("snow");
+                    }
+                    btn.MouseClick += new MouseEventHandler(btnTable_MouseClick);
+                    pnlTable.Controls.Add(btn);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
+
+        private void btnTable_MouseClick(object sender, EventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Text);
+        }
+        #endregion
     }
 }
