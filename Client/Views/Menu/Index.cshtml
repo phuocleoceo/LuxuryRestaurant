@@ -8,48 +8,41 @@
 @section MYCSS{
     <link href="@Url.Content("~/css/menu.css")" rel="stylesheet" />
 }
-<div class="row pb-3 backgroundWhite foodlist">
-
-    @foreach (Food p in Model)
-    {
-        <div class="col-lg-3 col-md-6">
-            <div class="row p-2">
-                <div class="col-12  p-1" style="border:1px solid #008cba; border-radius: 5px;">
-                    <div class="card" style="border:0px;">
-                        @if (p.Image != null)
+<section class="menu" id="menu">
+    <div class="box-container">
+        @foreach (Food p in Model)
+        {
+            <div class="box">
+                <div class="image">
+                    @if (p.Image != null)
+                    {
+                        var base64 = Convert.ToBase64String(p.Image);
+                        string imgsrc = "";
+                        if (string.IsNullOrEmpty(base64))
                         {
-                            var base64 = Convert.ToBase64String(p.Image);
-                            string imgsrc = "";
-                            if (string.IsNullOrEmpty(base64))
-                            {
-                                imgsrc = "https://via.placeholder.com/150";
-                            }
-                            else
-                            {
-                                imgsrc = $"data:image/jpg;base64,{base64}";
-                            }
-                            <img src=@imgsrc class="card-img-top rounded"
-                                 style="width: 100%; height: 25vw; object-fit: cover;" />
+                            imgsrc = "https://via.placeholder.com/150";
                         }
-                        <div class="pl-1">
-                            <p class="card-title h5"><b style="color:#2c3e50">@p.Name</b></p>
-                            <p class="card-title text-primary"><b>@p.Description</b></p>
-                        </div>
-                        <div style="padding-left:5px;">
-                            <p>Price: <b class="">@(p.Price.ToString()+" VND")</b></p>
-                        </div>
-                    </div>
-                    <div>
-                        <button onclick="AddToCart(@p.Id)" class="btn btn-primary form-control">
-                            Add To Cart
-                            <i class="fas fa-cart-plus"></i>
-                        </button>
-                    </div>
+                        else
+                        {
+                            imgsrc = $"data:image/jpg;base64,{base64}";
+                        }
+                        <img src=@imgsrc alt="">
+                    }
+                </div>
+                <div class="content">
+                    <h3>@p.Name</h3>
+                    <p>@p.Description</p>
+                    @*<a href="#" class="btn">add to cart</a>*@
+                    <button onclick="AddToCart(@p.Id)" class="btn">
+                        Add To Cart
+                        <i class="fas fa-cart-plus"></i>
+                    </button>
+                    <span class="price">@((p.Price/1000).ToString()+" K")</span>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+</section>
 
 @section Scripts{
     <script src="~/js/menu.js"></script>

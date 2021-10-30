@@ -3,8 +3,6 @@ using Server.Repository.Implement;
 using Server.Repository.Interface;
 using System.Windows.Forms;
 using System;
-using Server.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Server
 {
@@ -15,10 +13,6 @@ namespace Server
         static void ConfigureServices()
         {
             ServiceCollection services = new ServiceCollection();
-            //services.AddDbContext<LuxuryContext>(options =>
-            //{
-            //    options.UseSqlServer();
-            //});
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
             services.AddScoped<ICartRepository, CartRepository>();

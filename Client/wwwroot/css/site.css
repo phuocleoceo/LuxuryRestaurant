@@ -1,12 +1,12 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
-:root {
+﻿:root {
     --brown: rgb(54, 31, 31);
-    --green: #7fd8a4;
+    --green: #27ae60;
     --black: #192a56;
     --light-color: #666;
-    --box-shadow: 0 0.5em 1.5em rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
 }
-.MyHeader {
+
+* {
     font-family: "Noto Serif Display", serif;
     margin: 0;
     padding: 0;
@@ -14,20 +14,47 @@
     text-decoration: none;
     outline: none;
     border: none;
-    text-transform: capitalize;
     transition: all 0.2s linear;
-    overflow-x: hidden;
-    scroll-padding-top: 5.5em;
-    scroll-behavior: smooth;
-    font-size: 50%;
 }
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5.5rem;
+    scroll-behavior: smooth;
+}
+
+section {
+    margin-top: 7.5rem;
+    padding: 2 rem 9%;
+}
+
+    section:nth-child(even) {
+        background: #fff;
+    }
+
+.sub-heading {
+    text-align: center;
+    color: var(--green);
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+
+.heading {
+    text-align: center;
+    color: var(--black);
+    font-size: 3rem;
+    padding-bottom: 2rem;
+    text-transform: uppercase;
+}
+
 header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     background: rgb(255, 255, 255);
-    padding: 1em 7%;
+    padding: 1rem 7%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -37,7 +64,7 @@ header {
 
     header .logo {
         color: var(--black);
-        font-size: 2.5em;
+        font-size: 2.5rem;
         font-weight: bolder;
     }
 
@@ -46,9 +73,9 @@ header {
         }
 
     header .navbar a {
-        font-size: 2em;
+        font-size: 2rem;
         border-radius: 1rem;
-        padding: 0.5em 1.5em;
+        padding: 0.5rem 1.5rem;
         color: var(--light-color);
     }
 
@@ -61,12 +88,12 @@ header {
     header .icons i,
     header .icons a {
         cursor: pointer;
-        margin-left: 0.5em;
-        height: 4.5em;
-        line-height: 4.5em;
-        width: 4.5em;
+        margin-left: 0.5rem;
+        height: 4.5rem;
+        line-height: 4.5rem;
+        width: 4.5rem;
         text-align: center;
-        font-size: 1.7em;
+        font-size: 1.7rem;
         color: var(--black);
         border-radius: 50%;
         background: #eee;
@@ -79,6 +106,10 @@ header {
             transform: rotate(360deg);
         }
 
+    header .icons #menu-bars {
+        display: none;
+    }
+
 @media (max-width: 768px) {
     header .icons #menu-bars {
         display: inline-block;
@@ -90,9 +121,9 @@ header {
         left: 0;
         right: 0;
         background: #fff;
-        border-top: 0.1em solid rgba(0, 0, 0, 0.2);
-        border-bottom: 0.1em solid rgba(0, 0, 0, 0.2);
-        padding: 1em;
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+        padding: 1rem;
         clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     }
 
@@ -102,9 +133,9 @@ header {
 
         header .navbar a {
             display: block;
-            padding: 1.5em;
-            margin: 1em;
-            font-size: 2em;
+            padding: 1.5rem;
+            margin: 1rem;
+            font-size: 2rem;
             background: rgb(230, 227, 227);
         }
 }

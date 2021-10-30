@@ -2,104 +2,57 @@
 @{
     ViewData["Title"] = "Shopping Cart";
 }
-
+@section MYCSS{
+    <link href="@Url.Content("~/css/cart.css")" rel="stylesheet" />
+}
 @if (Model.Count > 0)
 {
-    <form method="post">
-        <br />
-        <div class="container">
-            <div class="card">
-                <div class="card-header bg-dark text-light ml-0">
-                    <div class="row">
-                        <div class="col-6  pt-2">
-                            <i class="fa fa-shopping-cart"></i> &nbsp;
-                            Shopping Cart
-                        </div>
-                        <div class="col-6 text-end">
-                            <a asp-controller="Menu" asp-action="Index"
-                               class="btn btn-outline-info btn-sm">Continue Shopping</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    @foreach (ShoppingCart cart in Model)
-                    {
-                        <div class="row">
-                            @if (cart.Food.Image != null)
+    <section class="shopping-cart-container">
+        <div class="products-container">
+            <h3 class="title">Your Food</h3>
+            <div class="box-container">
+                @foreach (ShoppingCart cart in Model)
+                {
+                    <div class="box">
+                        <button onclick="RemoveCart(@cart.Id)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        @if (cart.Food.Image != null)
+                        {
+                            var base64 = Convert.ToBase64String(cart.Food.Image);
+                            string imgsrc = "";
+                            if (string.IsNullOrEmpty(base64))
                             {
-                                var base64 = Convert.ToBase64String(cart.Food.Image);
-                                string imgsrc = "";
-                                if (string.IsNullOrEmpty(base64))
-                                {
-                                    imgsrc = "https://via.placeholder.com/150";
-                                }
-                                else
-                                {
-                                    imgsrc = $"data:image/jpg;base64,{base64}";
-                                }
-                                <div class="d-none d-lg-block col-lg-1 text-center py-2">
-                                    <img src=@imgsrc class="rounded" width="100%" />
-                                </div>
+                                imgsrc = "https://via.placeholder.com/150";
                             }
-                            <div class="col-12 col-lg-6 pt-md-3">
-                                <h5><strong>@cart.Food.Name</strong></h5>
-                                <p><small>@cart.Food.Description</small></p>
-                            </div>
-                            <div class="col-12  col-lg-5 text-center row">
-                                <div class="col-4 text-md-right pt-4">
-                                    <h6>
-                                        <strong>
-                                            @cart.Food.Price
-                                            <span class="text-muted">&nbsp;x&nbsp;</span>@cart.Count
-                                        </strong>
-                                    </h6>
-                                </div>
-                                <div class="col-6 col-sm-4 col-lg-6 pt-2">
-                                    <div class="w-75 btn-group" role="group">
-                                        <button onclick="PlusCart(@cart.Id)" class="btn btn-primary">
-                                            <i class="fas fa-plus-square"></i>
-                                        </button> &nbsp;
-                                        <button onclick="MinusCart(@cart.Id)" class="btn btn-warning">
-                                            <i class="fas fa-minus-square"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-                                <div class="col-2 col-sm-4 col-lg-2 text-right pt-2">
-                                    <button onclick="RemoveCart(@cart.Id)" class="btn btn-danger">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                    }
-                    <div class="row">
-                        <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between bg-light">
-                                    <span class="text-info"> Total (VNĐ)</span>
-                                    @Model.Sum(c => c.Count * c.Food.Price).ToString()
-                                </li>
-                            </ul>
+                            else
+                            {
+                                imgsrc = $"data:image/jpg;base64,{base64}";
+                            }
+                            <img src=@imgsrc alt="">
+                        }
+                        <div class="content">
+                            <h3>@cart.Food.Name</h3>
+                            <span> quantity : </span> <br>
+                            <input type="button" value="-" onclick="MinusCart(@cart.Id)">
+                            <p class="quatity">@cart.Count</p>
+                            <input type="button" value="+" onclick="PlusCart(@cart.Id)">
+                            <br>
+                            <span> price : </span>
+                            <span class="price"> @cart.Food.Price </span>
                         </div>
                     </div>
-
-                </div>
-
-                <div class="card-footer">
-                    <div class="card-footer row">
-                        <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-                            <button onclick="PlaceOrder()" class="btn btn-success form-control">
-                                Order
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
-    </form>
+        <div class="cart-total">
+            <h3 class="title"> cart total </h3>
+            <div class="box">
+                <h3 class="total"> total : <span>@Model.Sum(c => c.Count * c.Food.Price).ToString()</span> </h3>
+                <button class="btn" onclick="PlaceOrder()">proceed to checkout</button>
+            </div>
+        </div>
+    </section>
 }
 else
 {

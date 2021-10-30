@@ -1,17 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿using Server.Repository.Interface;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using Common.Extension;
 using Newtonsoft.Json;
+using System.Drawing;
+using System.Linq;
 using Common.DAO;
 using System.Net;
 using System.IO;
 using Common.BO;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using Server.Repository.Interface;
 
 namespace Server
 {
