@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Repository.Interface;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,18 @@ namespace Server.Repository.Implement
                     _db.ShoppingCarts.Remove(c);
                 });
             return await SaveAsync();
+        }
+
+        public async Task<OrderHeader> GetOrderOfUser(int UserId)
+        {
+            return await _db.OrderHeaders.Include(c => c.OrderDetails)
+                .FirstOrDefaultAsync(c => c.UserId == UserId && !c.IsPaid);
+        }
+
+        public async Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId)
+        {
+            return await _db.OrderDetails.Include(c => c.Food)
+                    .Where(c => c.OrderHeaderId == OrderHeaderId).ToListAsync();
         }
 
         public async Task<bool> SaveAsync()

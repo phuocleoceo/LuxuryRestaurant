@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Net.Sockets;
 using Common.Extension;
 using Newtonsoft.Json;
-using Server.Data;
 using Common.DAO;
 using System.Net;
 using System.IO;
@@ -100,7 +99,7 @@ namespace Server
                         Width = 100,
                         Height = 50,
                         Location = new Point(x, y),
-                    };                    
+                    };
                     if (x < pnlTable.Width - 220)
                     {
                         x += 110;
@@ -136,9 +135,31 @@ namespace Server
             }
         }
 
-        private void btnTable_MouseClick(object sender, EventArgs e)
+        private async void btnTable_MouseClick(object sender, EventArgs e)
         {
-            MessageBox.Show(((Button)sender).Text);
+            int UserId = Convert.ToInt32(((Button)sender).Tag);
+            OrderHeader order = await _or.GetOrderOfUser(UserId);
+            if (order != null)
+            {
+                lblTotal.Text = order.OrderTotal.ToString() + " VNĐ";
+
+                pnlOrder.Controls.Clear();
+                List<OrderDetail> orderDetail = await _or.GetOrderDetail(order.Id);
+                int y = 10;
+                for (int i = 0; i < orderDetail.Count; i++)
+                {
+                    Label lbl = new Label()
+                    {
+                        Name = "btnFB" + i,
+                        Text = $"  {orderDetail[i].Food.Name,-30}{orderDetail[i].Count,5}",
+                        Width = pnlOrder.Width - 20,
+                        Height = 20,
+                        Location = new Point(5, y)
+                    };
+                    y += 27;
+                    pnlOrder.Controls.Add(lbl);
+                }                
+            }
         }
         #endregion
     }

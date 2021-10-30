@@ -11,6 +11,10 @@ namespace Server.Repository.Interface
     {
         Task<bool> PlaceOrder(int UserId);
 
+        Task<OrderHeader> GetOrderOfUser(int UserId);
+
+        Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId);
+
         Task<bool> SaveAsync();
     }
 }
