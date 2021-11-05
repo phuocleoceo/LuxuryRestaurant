@@ -51,10 +51,15 @@ namespace Server.Repository.Implement
                 .Where(c => c.UserId == UserId && !c.IsPaid).ToListAsync();
         }
 
-        public async Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId)
+        public async Task<List<OrderDetail>> GetOrderDetail(List<OrderHeader> listOrder)
         {
-            return await _db.OrderDetails.Include(c => c.Food)
-                    .Where(c => c.OrderHeaderId == OrderHeaderId).ToListAsync();
+            List<OrderDetail> listOrderDetail = new List<OrderDetail>();
+            foreach (OrderHeader o in listOrder)
+            {
+                listOrderDetail.AddRange(await _db.OrderDetails.Include(c => c.Food)
+                    .Where(c => c.OrderHeaderId==o.Id).ToListAsync());
+            }
+            return listOrderDetail;
         }
 
         public async Task<bool> PurchaseForUser(int UserId)

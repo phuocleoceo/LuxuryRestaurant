@@ -147,11 +147,7 @@ namespace Server
                 lblTotal.Text = order.Sum(c => c.OrderTotal).ToString() + " VNĐ";
 
                 // Ghep tat ca List<OrderDetail> lai thanh 1
-                List<OrderDetail> orderDetail = new List<OrderDetail>();
-                foreach (OrderHeader o in order)
-                {
-                    orderDetail.AddRange(await _or.GetOrderDetail(o.Id));
-                }
+                List<OrderDetail> orderDetail = await _or.GetOrderDetail(order);
 
                 // Hien thi danh sach mon an
                 int y = 10;

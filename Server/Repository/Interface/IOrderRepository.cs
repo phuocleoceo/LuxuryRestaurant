@@ -13,7 +13,7 @@ namespace Server.Repository.Interface
 
         Task<List<OrderHeader>> GetOrderOfUser(int UserId);
 
-        Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId);
+        Task<List<OrderDetail>> GetOrderDetail(List<OrderHeader> listOrder);
 
         Task<bool> PurchaseForUser(int UserId);
 
