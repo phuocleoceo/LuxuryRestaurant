@@ -57,6 +57,14 @@ namespace Server.Repository.Implement
                     .Where(c => c.OrderHeaderId == OrderHeaderId).ToListAsync();
         }
 
+        public async Task<bool> PurchaseForUser(int UserId)
+        {
+            OrderHeader order=await _db.OrderHeaders
+                        .FirstOrDefaultAsync(c => c.UserId == UserId && !c.IsPaid);
+            order.IsPaid = true;
+            return await SaveAsync();
+        }
+
         public async Task<bool> SaveAsync()
         {
             return await _db.SaveChangesAsync() >= 0;

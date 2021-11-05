@@ -4,108 +4,110 @@
     var title = "Create Food";
 }
 
-<form method="post" enctype="multipart/form-data">
-    <div class="row p-3 border">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Id != 0)
-        {
-            <input type="hidden" asp-for="Id" />
-            title = "Edit Food";
-        }
-        <div class="col-12 border-bottom">
-            <h2 class="text-primary">@title</h2>
-        </div>
-        <div class="col-8 pt-4">
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Name"></label>
+<div style="margin-top:10vh">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row p-3 border">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (Model.Id != 0)
+            {
+                <input type="hidden" asp-for="Id" />
+                title = "Edit Food";
+            }
+            <div class="col-12 border-bottom">
+                <h2 class="text-primary">@title</h2>
+            </div>
+            <div class="col-8 pt-4">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="col-8">
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Price"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Image"></label>
+                    </div>
+
+                    <div class="col-8">
+                        <input type="file" asp-for="Image" id="projectImage" name="files" multiple class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-8 offset-4">
+                        @if (Model.Id != 0)
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary form-control">
+                                        Update
+                                    </button>
+                                </div>
+
+                                <div class="col">
+                                    <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                </div>
+
+                                <div class="col">
+                                    <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Price"></label>
-                </div>
-                <div class="col-8">
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Description"></label>
-                </div>
-                <div class="col-8">
-                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-4">
-                    <label asp-for="Image"></label>
-                </div>
-
-                <div class="col-8">
-                    <input type="file" asp-for="Image" id="projectImage" name="files" multiple class="form-control" />
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-8 offset-4">
-                    @if (Model.Id != 0)
+            <div class="col-4 text-right" style="width:250px;">
+                @if (Model.Image != null)
+                {
+                    var base64 = Convert.ToBase64String(Model.Image);
+                    string imgsrc = "";
+                    if (string.IsNullOrEmpty(base64))
                     {
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary form-control">
-                                    Update
-                                </button>
-                            </div>
-
-                            <div class="col">
-                                <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
-                            </div>
-                        </div>
+                        imgsrc = "https://via.placeholder.com/150";
                     }
                     else
                     {
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" class="btn btn-primary form-control">Create</button>
-                            </div>
-
-                            <div class="col">
-                                <a asp-action="Index" class="btn btn-success form-control">Back To List</a>
-                            </div>
-                        </div>
+                        imgsrc = $"data:image/jpg;base64,{base64}";
                     }
-                </div>
+                    <img src="@imgsrc" width="100%" />
+                }
             </div>
         </div>
-        <div class="col-4 text-right" style="width:250px;">
-            @if (Model.Image != null)
-            {
-                var base64 = Convert.ToBase64String(Model.Image);
-                string imgsrc = "";
-                if (string.IsNullOrEmpty(base64))
-                {
-                    imgsrc = "https://via.placeholder.com/150";
-                }
-                else
-                {
-                    imgsrc = $"data:image/jpg;base64,{base64}";
-                }
-                <img src="@imgsrc" width="100%" />
-            }
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
-}
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }

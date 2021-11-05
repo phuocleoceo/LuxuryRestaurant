@@ -29,18 +29,22 @@ namespace Server
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.lblHeader = new System.Windows.Forms.Label();
             this.lbMSG = new System.Windows.Forms.ListBox();
             this.pnlTable = new System.Windows.Forms.Panel();
             this.grbTable = new System.Windows.Forms.GroupBox();
             this.grbMSG = new System.Windows.Forms.GroupBox();
             this.grbOrder = new System.Windows.Forms.GroupBox();
+            this.lblTableName = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.pnlOrder = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnPurchase = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.grbTable.SuspendLayout();
             this.grbMSG.SuspendLayout();
             this.grbOrder.SuspendLayout();
@@ -62,7 +66,7 @@ namespace Server
             this.lbMSG.ItemHeight = 21;
             this.lbMSG.Location = new System.Drawing.Point(6, 30);
             this.lbMSG.Name = "lbMSG";
-            this.lbMSG.Size = new System.Drawing.Size(216, 361);
+            this.lbMSG.Size = new System.Drawing.Size(221, 361);
             this.lbMSG.TabIndex = 1;
             // 
             // pnlTable
@@ -85,15 +89,16 @@ namespace Server
             // grbMSG
             // 
             this.grbMSG.Controls.Add(this.lbMSG);
-            this.grbMSG.Location = new System.Drawing.Point(758, 55);
+            this.grbMSG.Location = new System.Drawing.Point(714, 55);
             this.grbMSG.Name = "grbMSG";
-            this.grbMSG.Size = new System.Drawing.Size(222, 403);
+            this.grbMSG.Size = new System.Drawing.Size(233, 403);
             this.grbMSG.TabIndex = 4;
             this.grbMSG.TabStop = false;
             this.grbMSG.Text = "Thông điệp :";
             // 
             // grbOrder
             // 
+            this.grbOrder.Controls.Add(this.lblTableName);
             this.grbOrder.Controls.Add(this.lblTotal);
             this.grbOrder.Controls.Add(this.label4);
             this.grbOrder.Controls.Add(this.pnlOrder);
@@ -106,6 +111,15 @@ namespace Server
             this.grbOrder.TabIndex = 5;
             this.grbOrder.TabStop = false;
             this.grbOrder.Text = "Danh mục Order";
+            // 
+            // lblTableName
+            // 
+            this.lblTableName.AutoSize = true;
+            this.lblTableName.Location = new System.Drawing.Point(127, 0);
+            this.lblTableName.Name = "lblTableName";
+            this.lblTableName.Size = new System.Drawing.Size(36, 21);
+            this.lblTableName.TabIndex = 6;
+            this.lblTableName.Text = "Bàn";
             // 
             // lblTotal
             // 
@@ -158,11 +172,56 @@ namespace Server
             this.label1.Size = new System.Drawing.Size(0, 21);
             this.label1.TabIndex = 0;
             // 
+            // btnPurchase
+            // 
+            this.btnPurchase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPurchase.BackColor = System.Drawing.Color.White;
+            this.btnPurchase.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPurchase.BackgroundImage")));
+            this.btnPurchase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPurchase.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPurchase.Enabled = false;
+            this.btnPurchase.FlatAppearance.BorderSize = 0;
+            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPurchase.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPurchase.Location = new System.Drawing.Point(568, 39);
+            this.btnPurchase.Margin = new System.Windows.Forms.Padding(5);
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(42, 40);
+            this.btnPurchase.TabIndex = 51;
+            this.btnPurchase.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPurchase.UseVisualStyleBackColor = false;
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPrint.BackColor = System.Drawing.Color.White;
+            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.Enabled = false;
+            this.btnPrint.FlatAppearance.BorderSize = 0;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPrint.Location = new System.Drawing.Point(620, 39);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(41, 40);
+            this.btnPrint.TabIndex = 51;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 475);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(970, 475);
+            this.Controls.Add(this.btnPrint);
+            this.Controls.Add(this.btnPurchase);
             this.Controls.Add(this.grbOrder);
             this.Controls.Add(this.grbMSG);
             this.Controls.Add(this.grbTable);
@@ -194,6 +253,9 @@ namespace Server
         private System.Windows.Forms.Panel pnlOrder;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnPurchase;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Label lblTableName;
     }
 }
 

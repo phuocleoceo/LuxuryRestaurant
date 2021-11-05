@@ -15,6 +15,8 @@ namespace Server.Repository.Interface
 
         Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId);
 
+        Task<bool> PurchaseForUser(int UserId);
+
         Task<bool> SaveAsync();
     }
 }
