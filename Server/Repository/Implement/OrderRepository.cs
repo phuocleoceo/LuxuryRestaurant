@@ -29,7 +29,7 @@ namespace Server.Repository.Implement
             await _db.SaveChangesAsync();
 
             await _db.ShoppingCarts.Where(c => c.UserId == UserId)
-                .Include(c => c.Food).ForEachAsync(c=>
+                .Include(c => c.Food).ForEachAsync(c =>
                 {
                     OrderDetail orderDetail = new OrderDetail()
                     {
@@ -45,10 +45,10 @@ namespace Server.Repository.Implement
             return await SaveAsync();
         }
 
-        public async Task<OrderHeader> GetOrderOfUser(int UserId)
+        public async Task<List<OrderHeader>> GetOrderOfUser(int UserId)
         {
             return await _db.OrderHeaders
-                .FirstOrDefaultAsync(c => c.UserId == UserId && !c.IsPaid);
+                .Where(c => c.UserId == UserId && !c.IsPaid).ToListAsync();
         }
 
         public async Task<List<OrderDetail>> GetOrderDetail(int OrderHeaderId)
@@ -59,9 +59,12 @@ namespace Server.Repository.Implement
 
         public async Task<bool> PurchaseForUser(int UserId)
         {
-            OrderHeader order=await _db.OrderHeaders
-                        .FirstOrDefaultAsync(c => c.UserId == UserId && !c.IsPaid);
-            order.IsPaid = true;
+            List<OrderHeader> order = await _db.OrderHeaders
+                        .Where(c => c.UserId == UserId && !c.IsPaid).ToListAsync();
+            for (int i = 0; i < order.Count; i++)
+            {
+                order[i].IsPaid = true;
+            }
             return await SaveAsync();
         }
 

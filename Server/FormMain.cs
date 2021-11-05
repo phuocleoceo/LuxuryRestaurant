@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using Common.Extension;
 using Newtonsoft.Json;
 using System.Drawing;
+using System.Linq;
 using Common.DAO;
 using System.Net;
 using System.IO;
@@ -112,8 +113,8 @@ namespace Server
                         x = 10;
                         y += 60;
                     }
-                    OrderHeader order = await _or.GetOrderOfUser(listUser[i].Id);
-                    if (order == null)
+                    List<OrderHeader> order = await _or.GetOrderOfUser(listUser[i].Id);
+                    if (order.Count == 0)
                     {
                         btn.BackColor = ColorTranslator.FromHtml("snow");
                     }
@@ -139,13 +140,20 @@ namespace Server
             int UserId = Convert.ToInt32(((Button)sender).Tag);
             pnlOrder.Tag = UserId;
 
-            OrderHeader order = await _or.GetOrderOfUser(UserId);
+            List<OrderHeader> order = await _or.GetOrderOfUser(UserId);
             if (order != null)
             {
-                lblTotal.Text = order.OrderTotal.ToString() + " VNĐ";
-
                 pnlOrder.Controls.Clear();
-                List<OrderDetail> orderDetail = await _or.GetOrderDetail(order.Id);
+                lblTotal.Text = order.Sum(c => c.OrderTotal).ToString() + " VNĐ";
+
+                // Ghep tat ca List<OrderDetail> lai thanh 1
+                List<OrderDetail> orderDetail = new List<OrderDetail>();
+                foreach (OrderHeader o in order)
+                {
+                    orderDetail.AddRange(await _or.GetOrderDetail(o.Id));
+                }
+
+                // Hien thi danh sach mon an
                 int y = 10;
                 for (int i = 0; i < orderDetail.Count; i++)
                 {
