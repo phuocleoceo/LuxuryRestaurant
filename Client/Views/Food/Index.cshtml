@@ -38,8 +38,7 @@
                             <td>
                                 <span class="action_btn">
                                     <a asp-action="Upsert" asp-route-id="@f.Id" class="fas fa-edit"></a>
-                                    <a asp-action="Delete" asp-route-id="@f.Id" class="fas fa-trash-alt"
-                                       data-toggle="modal" data-id="@f.Id" data-target="#delete-modal"></a>
+                                    <a onclick="Delete('/food/delete/@f.Id')" class="fas fa-trash-alt"></a>
                                 </span>
                             </td>
                         </tr>
@@ -50,16 +49,8 @@
     </div>
 </section>
 
-
-@{
-    var path = "/food/delete/";
-}
-<partial name="_DeleteFormSubmit" model="@path" />
-
 @section Scripts{
-    <script>
-        $(function () {
-            $("#food-table").dataTable();
-        })
-    </script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/food.js"></script>
 }

@@ -96,19 +96,18 @@ namespace Client.Controllers
             return View(food);
         }
 
+        [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
             Food obj = await _rp.GetAsync(id);
-            if (obj == null)
+            if (obj == null || !await _rp.DeleteAsync(id))
             {
-                return NotFound();
+                return Json(new { success = false, message = "Delete Failure" });
             }
-            if (!await _rp.DeleteAsync(id))
+            else
             {
-                return BadRequest();
+                return Json(new { success = true, message = "Delete Successfully" });
             }
-            TempData["Alert"] = "Delete Food Successfully !";
-            return RedirectToAction("Index");
         }
     }
 }
