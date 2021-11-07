@@ -3,84 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Form</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <title>Table</title>
 </head>
 <body>
-    <section class="Manage" id="mamage"></section>
-    <div class="table_responsive">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Decription</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-      
-          <tbody>
-            <tr>
-              <td>Canh thịt bò lá lót</td>
-              <td>500000</td>
-              <td>Siêu thơm ngon mùi thịt bò</td>
-              <td>
-                <span class="action_btn">
-                  <a href="#" class="fas fa-trash-alt"></a>
-                  <a href="#" class="fas fa-edit" ></a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Canh thịt bò lá lót</td>
-              <td>500000</td>
-              <td>Siêu thơm ngon mùi thịt bò</td>
-              <td>
-                <span class="action_btn">
-                  <a href="#" class="fas fa-trash-alt"></a>
-                  <a href="#" class="fas fa-edit" ></a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Canh thịt bò lá lót</td>
-              <td>500000</td>
-              <td>Siêu thơm ngon mùi thịt bò</td>
-              <td>
-                <span class="action_btn">
-                  <a href="#" class="fas fa-trash-alt"></a>
-                  <a href="#" class="fas fa-edit" ></a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Canh thịt bò lá lót</td>
-              <td>500000</td>
-              <td>Siêu thơm ngon mùi thịt bò</td>
-              <td>
-                <span class="action_btn">
-                  <a href="#" class="fas fa-trash-alt"></a>
-                  <a href="#" class="fas fa-edit" ></a>
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Canh thịt bò lá lót</td>
-              <td>500000</td>
-              <td>Siêu thơm ngon mùi thịt bò</td>
-              <td>
-                <span class="action_btn">
-                  <a href="#" class="fas fa-trash-alt"></a>
-                  <a href="#" class="fas fa-edit" ></a>
-                </span>
-              </td>
-            </tr>
-        </table>
-      </div>
-      </div>
+
+    <header>
+
+        <a href="#" class="logo">Luxury Restaurant</a>
+         <nav class="navbar">
+            <a class="active" href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#food">Food</a>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="#"  class="fas fa-user"> </a>
+            <a href="#" class="fas fa-sign-out-alt"></a>
+
+        </div>
+    
+    </header>    
+
+    <section class="manage-container">
+        <div class = "table-Container">
+            <h3 class= "title"> Quản Lý Món Ăn</h3>
+            <div class="table-box"> 
+                <div class="create">
+                    <input type="button" value="+Create Food">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Decription</th>
+                            <th>Action</th>
+                          </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Canh thịt bò lá lốt</td>
+                            <td>500000</td>
+                            <td>Siêu thơm ngon mùi thịt bò</td>
+                            <td>
+                            <span class="action_btn">
+                            <a href="#" class="fas fa-edit" ></a>
+                            <a href="#" class="fas fa-trash-alt"></a>
+                            </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rong biển cháy tỏi</td>
+                            <td>500000</td>
+                            <td>Siêu thơm ngon mùi thịt bò</td>
+                            <td>
+                            <span class="action_btn">
+                            <a href="#" class="fas fa-edit" ></a>
+                            <a href="#" class="fas fa-trash-alt"></a>
+                            </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cánh gà chiên mắm</td>
+                            <td>500000</td>
+                            <td>Siêu thơm ngon mùi thịt bò</td>
+                            <td>
+                            <span class="action_btn">
+                            <a href="#" class="fas fa-edit" ></a>
+                            <a href="#" class="fas fa-trash-alt"></a>
+                            </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cánh gà chiên mắm</td>
+                            <td>500000</td>
+                            <td>Siêu thơm ngon mùi thịt bò</td>
+                            <td>
+                            <span class="action_btn">
+                            <a href="#" class="fas fa-edit" ></a>
+                            <a href="#" class="fas fa-trash-alt"></a>
+                            </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cánh gà chiên mắm</td>
+                            <td>500000</td>
+                            <td>Siêu thơm ngon mùi thịt bò</td>
+                            <td>
+                            <span class="action_btn">
+                            <a href="#" class="fas fa-edit" ></a>
+                            <a href="#" class="fas fa-trash-alt"></a>
+                            </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
     </section>
 </body>
 </html>
