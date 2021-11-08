@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.DAO
+namespace Common.Entities
 {
     public class OrderDetail
     {

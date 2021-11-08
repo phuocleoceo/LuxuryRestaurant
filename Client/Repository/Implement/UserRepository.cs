@@ -5,8 +5,8 @@ using Common.Extension;
 using Newtonsoft.Json;
 using System.Net;
 using System.IO;
-using Common.BO;
-using Common.DAO;
+using Common.DTO;
+using Common.Entities;
 
 namespace Client.Repository.Implement
 {

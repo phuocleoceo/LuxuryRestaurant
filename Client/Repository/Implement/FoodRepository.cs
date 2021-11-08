@@ -6,8 +6,8 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using Client.Repository.Interface;
 using Newtonsoft.Json;
-using Common.DAO;
-using Common.BO;
+using Common.Entities;
+using Common.DTO;
 using Common.Extension;
 using System;
 

@@ -3,7 +3,7 @@ using Server.Repository.Interface;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Server.Data;
-using Common.DAO;
+using Common.Entities;
 
 namespace Server.Repository.Implement
 {

@@ -1,4 +1,4 @@
-﻿namespace Common.BO
+﻿namespace Common.DTO
 {
     public class RequestModel
     {

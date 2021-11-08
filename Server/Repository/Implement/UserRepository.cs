@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Common.Extension;
 using Server.Data;
 using System.Linq;
-using Common.DAO;
-using Common.BO;
+using Common.Entities;
+using Common.DTO;
 using System.Collections.Generic;
 
 namespace Server.Repository.Implement

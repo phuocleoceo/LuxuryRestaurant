@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Common.DAO;
+using Common.Entities;
 using System;
 
 namespace Server.Data.Configuration

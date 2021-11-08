@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.BO;
-using Common.DAO;
+using Common.DTO;
+using Common.Entities;
 
 namespace Server.Repository.Interface
 {

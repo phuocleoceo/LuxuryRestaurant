@@ -8,10 +8,10 @@ using Common.Extension;
 using Newtonsoft.Json;
 using System.Drawing;
 using System.Linq;
-using Common.DAO;
+using Common.Entities;
 using System.Net;
 using System.IO;
-using Common.BO;
+using Common.DTO;
 using System;
 
 namespace Server

@@ -1,6 +1,6 @@
 ﻿using Client.Repository.Interface;
-using Common.BO;
-using Common.DAO;
+using Common.DTO;
+using Common.Entities;
 using Common.Extension;
 using Newtonsoft.Json;
 using System;

@@ -10,14 +10,14 @@
 }
 <section class="manage-container">
     <div class="table-Container">
-        <h3 class="title"> Quản Lý Món Ăn</h3>
+        <div style="display:inline;">
+            <p class="title">Quản Lý Món Ăn</p>
+            <a asp-action="Upsert" class="upsert">
+                <i class="fas fa-plus"></i> &nbsp;
+                Create New Food
+            </a>
+        </div>
         <div class="table-box">
-            <div class="create">
-                <a asp-action="Upsert" class="upsert">
-                    <i class="fas fa-plus"></i> &nbsp;
-                    Create New Food
-                </a>
-            </div>
             <table id="food-table">
                 <thead>
                     <tr>

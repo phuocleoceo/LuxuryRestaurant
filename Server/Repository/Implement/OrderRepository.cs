@@ -1,4 +1,4 @@
-﻿using Common.DAO;
+﻿using Common.Entities;
 using Microsoft.EntityFrameworkCore;
 using Server.Data;
 using Server.Repository.Interface;

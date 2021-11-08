@@ -1,7 +1,7 @@
 ﻿using Client.Models;
 using Client.Repository.Interface;
-using Common.BO;
-using Common.DAO;
+using Common.DTO;
+using Common.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;

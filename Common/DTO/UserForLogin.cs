@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Common.BO
+namespace Common.DTO
 {
 	public class UserForLogin
 	{

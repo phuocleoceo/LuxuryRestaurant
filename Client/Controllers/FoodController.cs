@@ -1,5 +1,5 @@
 ﻿using Client.Repository.Interface;
-using Common.DAO;
+using Common.Entities;
 using Common.Extension;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

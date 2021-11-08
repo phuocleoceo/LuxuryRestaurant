@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.Extension;
 using Newtonsoft.Json;
-using Common.DAO;
-using Common.BO;
+using Common.Entities;
+using Common.DTO;
 using System;
 
 namespace Server

@@ -1,4 +1,4 @@
-﻿using Common.DAO;
+﻿using Common.Entities;
 using Common.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

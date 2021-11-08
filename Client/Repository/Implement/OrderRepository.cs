@@ -1,5 +1,5 @@
 ﻿using Client.Repository.Interface;
-using Common.BO;
+using Common.DTO;
 using Common.Extension;
 using Newtonsoft.Json;
 using System;
