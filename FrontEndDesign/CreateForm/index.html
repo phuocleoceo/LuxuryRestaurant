@@ -10,42 +10,48 @@
 </head>
 <body>
 
-    <header>
-
-        <a href="#" class="logo">Luxury Restaurant</a>
-         <nav class="navbar">
-            <a class="active" href="#home">Home</a>
-            <a href="#menu">Menu</a>
-            <a href="#food">Food</a>
-        </nav>
-
-        <div class="icons">
-            <i class="fas fa-bars" id="menu-bars"></i>
-            <a href="#" class="fas fa-shopping-cart"></a>
-            <a href="#"  class="fas fa-user"> </a>
-            <a href="#" class="fas fa-sign-out-alt"></a>
-
-        </div>
-    
-    </header>    
-
  <section class ="create-food-container">
         <div class ="table-Container">
             <h3 class ="title"> Create Food</h3>
             <div class ="box-container">
-                    <label>Name: </label> 
-                    <input type="text"> <br>               
-                    <label>Price: </label>
-                    <input type="text"> <br>               
-                    <label>Decription: </label>
-                    <input type="text"><br>               
-                    <label>Image: </label>
-                    <input type="text">
-            </div>
-            <div class="action-create">
-                <a href="#" class="btn">Create Food</a>
-                <a href="#" class="btn">Back to List</a>
-            </div>
+               <div class="row">
+                <div class ="col25">
+                    <label for="name">Name: </label>
+                </div>
+                <div class="col75">
+                  <input type="text">
+                </div>
+
+                <div class ="col25">
+                  <label for="price">Price: </label>
+              </div>
+              <div class="col75">
+                <input type="text">
+              </div>
+
+              <div class ="col25">
+                  <label for="subject">Decripton: </label>
+              </div>
+              <div clas ="col75">
+                  <textarea name="subject" id="subject" style="height: 10rem; width: 40%;" placeholder="viet gi do"></textarea>
+              </div>
+                <div class="col25">
+                    <label for="img">Image: </label>
+                </div>
+                <div class="col75">
+                      <input type="file"> 
+                </div>             
+                </div>
+                <!-- <div class="image">
+                    <img src="https://i.pinimg.com/564x/05/bd/cf/05bdcf2e89b40e8949eb8b4d42f51c05.jpg" alt="">
+                </div>
+                 -->
+               </div>
+           
+        </div>
+        <div class="action-create">
+            <a href="#" class="btn">Create Food</a>
+            <a href="#" class="btn">Back to List</a>
         </div>
     </section>
        
