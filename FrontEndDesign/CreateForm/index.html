@@ -9,49 +9,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
  <section class ="create-food-container">
-        <div class ="table-Container">
-            <h3 class ="title"> Create Food</h3>
+    <h3 class ="title"> Create Food</h3>
+        <div class ="table-Container"> 
             <div class ="box-container">
-               <div class="row">
-                <div class ="col25">
-                    <label for="name">Name: </label>
+                <div class="form_row">
+                    <label class="form_label">Name:</label>
+                    <input class="form_input" type="text">
                 </div>
-                <div class="col75">
-                  <input type="text">
+                <div class="form_row">
+                    <label class="form_label">Price:</label>
+                    <input class="form_input" type="text">
+                </div>
+                <div class="form_row">
+                    <label class="form_label">Decripton:</label>
+                    <textarea class ="form_area" name="subject" id="subject" style="height: 15rem" placeholder="viet gi do"></textarea>
+                </div>
+                <div class="form_row">
+                    <label class="form_label">Image:</label>
+                    <input class="form_input" type="file">
+                </div>
+                <div class="action-create">
+                    <a href="#" class="btn">Create Food</a>
+                    <a href="#" class="btn">Back to List</a>
                 </div>
 
-                <div class ="col25">
-                  <label for="price">Price: </label>
-              </div>
-              <div class="col75">
-                <input type="text">
-              </div>
-
-              <div class ="col25">
-                  <label for="subject">Decripton: </label>
-              </div>
-              <div clas ="col75">
-                  <textarea name="subject" id="subject" style="height: 10rem; width: 40%;" placeholder="viet gi do"></textarea>
-              </div>
-                <div class="col25">
-                    <label for="img">Image: </label>
-                </div>
-                <div class="col75">
-                      <input type="file"> 
-                </div>             
-                </div>
-                <!-- <div class="image">
-                    <img src="https://i.pinimg.com/564x/05/bd/cf/05bdcf2e89b40e8949eb8b4d42f51c05.jpg" alt="">
-                </div>
-                 -->
-               </div>
-           
-        </div>
-        <div class="action-create">
-            <a href="#" class="btn">Create Food</a>
-            <a href="#" class="btn">Back to List</a>
+            </div>
+            <div class= "picture-container">
+                <img src="https://i.pinimg.com/564x/da/71/48/da714894ba68b1649ae64c5abb9e8f37.jpg" alt="">
+            </div>
+            
         </div>
     </section>
        
