@@ -3,7 +3,7 @@
   --green: #27ae60;
   --black: #192a56;
   --light-color: #666;
-  --box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --box-shadow: 00.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -25,20 +25,23 @@ html {
   scroll-behavior: smooth;
 }
 .menu .box-container {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(30rem, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -10px;
 }
-
 .menu .box-container .box {
+  width: calc(25% - 10px);
   background: #fff;
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
+  overflow: hidden;
   box-shadow: var(--box-shadow);
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .menu .box-container .box .image {
-  height: 25rem;
+  height: 35rem;
   width: 100%;
   padding: 1.5rem;
   overflow: hidden;
@@ -73,6 +76,9 @@ html {
   color: var(--green);
   margin-left: 1rem;
   font-size: 2.5rem;
+}
+.menu .box-container .box:hover {
+  transform: scale3d(1.006, 1.006, 1);
 }
 .btn {
   margin-top: 1rem;
