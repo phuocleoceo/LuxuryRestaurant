@@ -1,0 +1,116 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+
+:root {
+    --green: #27ae60;
+    --black: #192a56;
+    --light-color: #666;
+    --box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+* {
+    font-family: "Nunito", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 8.5rem;
+    scroll-behavior: smooth;
+}
+
+.create-food-container {
+    top: 8.5 rem;
+    left: 0;
+    right: 0;
+    height: calc(100vh-8.5rem);
+    background-color: white;
+}
+
+    .create-food-container .title {
+        font-size: 2.5rem;
+        padding: 1rem;
+        color: #130f40;
+        border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .create-food-container .table-Container {
+        border: 0.1rem solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: white;
+        display: flex;
+    }
+
+        .create-food-container .table-Container .box-container {
+            flex: 3;
+            font-size: 1.5rem;
+            color: #444;
+        }
+
+            .create-food-container .table-Container .box-container .form_row {
+                display: flex;
+            }
+
+                .create-food-container .table-Container .box-container .form_row .form_label {
+                    min-width: 90px;
+                    padding: 8px;
+                    margin-left: 5%;
+                    margin-top: 6px;
+                }
+
+                .create-food-container .table-Container .box-container .form_row .form_input {
+                    width: 75%;
+                    padding: 5px 10px;
+                    margin: 5px 15px 15px;
+                    border: 1px solid var(--black);
+                    border-radius: 4px;
+                }
+
+                .create-food-container .table-Container .box-container .form_row .form_area {
+                    width: 75%;
+                    padding: 5px 10px;
+                    margin: 5px 15px 15px;
+                    border: 1px solid var(--black);
+                    border-radius: 4px;
+                    resize: none;
+                }
+
+        .create-food-container .table-Container .picture-container {
+            text-align: center;
+            margin-top: 0.6rem;
+            margin-left: 2rem;
+            margin-right: 5rem;
+            margin-bottom: 2rem;
+        }
+
+            .create-food-container .table-Container .picture-container img {
+                width: 300px;
+                height: auto;
+            }
+
+        .create-food-container .table-Container .box-container .action-create {
+            text-align: center;
+            padding-top: 1.5em;
+            padding-bottom: 1.5rem;
+        }
+
+            .create-food-container .table-Container .box-container .action-create a,.btn {
+                margin-top: 1rem;
+                font-size: 1.5rem;
+                color: #fff;
+                background: var(--black);
+                border-radius: 0.5rem;
+                padding: 0.8rem;
+                margin: 1.3rem;
+            }
+
+                .create-food-container .table-Container .box-container .action-create a:hover,.btn:hover {
+                    background: var(--green);
+                    letter-spacing: 0rem;
+                }
