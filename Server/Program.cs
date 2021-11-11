@@ -1,8 +1,5 @@
-using Microsoft.Extensions.DependencyInjection;
-using Server.Repository.Implement;
-using Server.Repository.Interface;
-using System.Windows.Forms;
 using System;
+using System.Windows.Forms;
 
 namespace Server
 {

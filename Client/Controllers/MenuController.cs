@@ -1,10 +1,7 @@
 ﻿using Client.Repository.Interface;
 using Common.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Client.Controllers
@@ -21,6 +18,6 @@ namespace Client.Controllers
         {
             List<Food> list = await _rp.GetAllAsync();
             return View(list);
-        }        
+        }
     }
 }

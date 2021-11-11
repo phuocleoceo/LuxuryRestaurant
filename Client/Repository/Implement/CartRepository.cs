@@ -2,32 +2,17 @@
 using Common.DTO;
 using Common.Entities;
 using Common.Extension;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace Client.Repository.Implement
 {
-    public class CartRepository : ICartRepository
+    public class CartRepository : Repository, ICartRepository
     {
-        private TcpClient client;
-        private NetworkStream stream;
-        private StreamReader reader;
-        private StreamWriter writer;
-
-        private async Task InitStream()
-        {
-            client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1008);
-            stream = client.GetStream();
-            reader = new StreamReader(stream);
-            writer = new StreamWriter(stream) { AutoFlush = true };
-        }
+        public CartRepository(IConfiguration configuration) : base(configuration) { }
 
         public async Task<List<ShoppingCart>> GetCarts(int UserId)
         {

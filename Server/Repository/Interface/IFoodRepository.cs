@@ -1,21 +1,21 @@
+using Common.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.Entities;
 
 namespace Server.Repository.Interface
 {
-	public interface IFoodRepository
-	{
-		Task<List<Food>> GetAllAsync();
+    public interface IFoodRepository
+    {
+        Task<List<Food>> GetAllAsync();
 
-		Task<Food> GetAsync(int Id);
+        Task<Food> GetAsync(int Id);
 
-		Task<bool> CreateAsync(Food obj);
+        Task<bool> CreateAsync(Food obj);
 
-		Task<bool> UpdateAsync(Food obj);
+        Task<bool> UpdateAsync(Food obj);
 
-		Task<bool> DeleteAsync(int Id);
+        Task<bool> DeleteAsync(int Id);
 
-		Task<bool> SaveAsync();
-	}
+        Task<bool> SaveAsync();
+    }
 }

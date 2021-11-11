@@ -4,7 +4,7 @@ using System.Text;
 namespace Common.Extension
 {
     public static class SD
-    {   
+    {
         public static string GetMD5(this string str)
         {
             MD5 md5 = MD5.Create();

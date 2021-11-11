@@ -1,30 +1,16 @@
 using Client.Repository.Interface;
-using System.Threading.Tasks;
-using System.Net.Sockets;
-using Common.Extension;
-using Newtonsoft.Json;
-using System.Net;
-using System.IO;
 using Common.DTO;
 using Common.Entities;
+using Common.Extension;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Client.Repository.Implement
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : Repository, IUserRepository
     {
-        private TcpClient client;
-        private NetworkStream stream;
-        private StreamReader reader;
-        private StreamWriter writer;
-
-        private async Task InitStream()
-        {
-            client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1008);
-            stream = client.GetStream();
-            reader = new StreamReader(stream);
-            writer = new StreamWriter(stream) { AutoFlush = true };
-        }
+        public UserRepository(IConfiguration configuration) : base(configuration) { }
 
         public async Task<User> LoginAsync(UserForLogin obj)
         {

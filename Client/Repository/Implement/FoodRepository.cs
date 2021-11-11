@@ -1,33 +1,18 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 using Client.Repository.Interface;
-using Newtonsoft.Json;
-using Common.Entities;
 using Common.DTO;
+using Common.Entities;
 using Common.Extension;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Client.Repository.Implement
 {
-    public class FoodRepository : IFoodRepository
+    public class FoodRepository : Repository, IFoodRepository
     {
-        private TcpClient client;
-        private NetworkStream stream;
-        private StreamReader reader;
-        private StreamWriter writer;
-
-        private async Task InitStream()
-        {
-            client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1008);
-            stream = client.GetStream();
-            reader = new StreamReader(stream);
-            writer = new StreamWriter(stream) { AutoFlush = true };
-        }
+        public FoodRepository(IConfiguration configuration) : base(configuration) { }
 
         public async Task<List<Food>> GetAllAsync()
         {
@@ -96,7 +81,7 @@ namespace Client.Repository.Implement
                 string rmJson = JsonConvert.SerializeObject(rm);
                 await writer.WriteLineAsync(rmJson);
 
-                string response = await reader.ReadLineAsync();            
+                string response = await reader.ReadLineAsync();
                 return Convert.ToBoolean(response);
             }
             catch

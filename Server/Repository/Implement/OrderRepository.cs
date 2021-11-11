@@ -57,7 +57,7 @@ namespace Server.Repository.Implement
             foreach (OrderHeader o in listOrder)
             {
                 listOrderDetail.AddRange(await _db.OrderDetails.Include(c => c.Food)
-                    .Where(c => c.OrderHeaderId==o.Id).ToListAsync());
+                    .Where(c => c.OrderHeaderId == o.Id).ToListAsync());
             }
             return listOrderDetail;
         }
