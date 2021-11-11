@@ -6,6 +6,7 @@ using Server.Repository.Implement;
 using Server.Repository.Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -44,7 +45,9 @@ namespace Server
 
         private void InitServer()
         {
-            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1008);
+            IPAddress ip = IPAddress.Parse(ConfigurationManager.AppSettings["IP"]);
+            int port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]);
+            server = new TcpListener(ip, port);
             server.Start(10);
             lblHeader.Text = $"<< Server started at {server.LocalEndpoint} >>";
         }

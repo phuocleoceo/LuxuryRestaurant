@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using System.Net;
+using System.IO;
+using System;
 
 namespace Client.Repository.Implement
 {
@@ -14,20 +14,20 @@ namespace Client.Repository.Implement
         protected StreamReader reader;
         protected StreamWriter writer;
         protected readonly IConfiguration _configuration;
-        protected string ip;
+        protected IPAddress ip;
         protected int port;
 
         public Repository(IConfiguration configuration)
         {
             _configuration = configuration;
-            ip = _configuration.GetSection("ServerInfor:IP").Value;
+            ip = IPAddress.Parse(_configuration.GetSection("ServerInfor:IP").Value);
             port = Convert.ToInt32(_configuration.GetSection("ServerInfor:Port").Value);
         }
 
         public async Task InitStream()
         {
             client = new TcpClient();
-            await client.ConnectAsync(IPAddress.Parse(ip), port);
+            await client.ConnectAsync(ip, port);
             stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream) { AutoFlush = true };
