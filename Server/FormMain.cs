@@ -20,7 +20,7 @@ namespace Server
     public partial class FormMain : Form
     {
         private TcpListener server;
-        private TcpClient worker;
+        private TcpClient client;
         private NetworkStream stream;
         private StreamReader reader;
         private StreamWriter writer;
@@ -54,8 +54,8 @@ namespace Server
 
         private async Task InitStream()
         {
-            worker = await server.AcceptTcpClientAsync();
-            stream = worker.GetStream();
+            client = await server.AcceptTcpClientAsync();
+            stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream) { AutoFlush = true };
         }
@@ -72,7 +72,7 @@ namespace Server
                 string response = await new Routing().RouteAppRequest(requestModel);
 
                 await writer.WriteLineAsync(response);
-                worker.Close();
+                client.Close();
             }
         }
         #endregion

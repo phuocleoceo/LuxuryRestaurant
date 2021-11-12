@@ -42,7 +42,6 @@ namespace Client.Controllers
                 User userLogin = await _rp.LoginAsync(userFL);
                 if (userLogin == null)
                 {
-                    TempData["Alert"] = "Login Failure ! Invalid Username or Password !";
                     return View();
                 }
 
@@ -59,7 +58,6 @@ namespace Client.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            TempData["Alert"] = "Login Failure ! Invalid Username or Password !";
             return RedirectToAction(nameof(Index));
         }
 
@@ -68,7 +66,6 @@ namespace Client.Controllers
             await HttpContext.SignOutAsync();
             HttpContext.Session.SetString("IsLoggedIn", "false");
             HttpContext.Session.SetString("DisplayName", "");
-            TempData["Alert"] = "Logout Successfully !";
             return RedirectToAction(nameof(Index));
         }
 

@@ -128,6 +128,7 @@ html {
                         outline: none;
                         border-radius: 0.5rem;
                         font-size: 2rem;
+                        cursor:pointer
                     }
 
                 .shopping-cart-container
@@ -148,6 +149,7 @@ html {
                     color: #130f40;
                     margin: 0.7rem 0;
                     display: inline;
+                    cursor:pointer
                 }
 
     .shopping-cart-container .cart-total {

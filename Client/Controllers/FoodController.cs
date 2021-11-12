@@ -81,7 +81,6 @@ namespace Client.Controllers
                     {
                         return BadRequest();
                     }
-                    TempData["Alert"] = "Add Food Successfully !";
                 }
                 else
                 {
@@ -89,7 +88,6 @@ namespace Client.Controllers
                     {
                         return BadRequest();
                     }
-                    TempData["Alert"] = "Edit Food Successfully !";
                 }
                 return RedirectToAction(nameof(Index));
             }
