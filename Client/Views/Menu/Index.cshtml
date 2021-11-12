@@ -8,6 +8,7 @@
 @section MYCSS{
     <link href="@Url.Content("~/css/menu.css")" rel="stylesheet" />
 }
+
 <section class="menu" id="menu">
     <div class="box-container">
         @foreach (Food p in Model)
@@ -32,7 +33,6 @@
                 <div class="content">
                     <h3>@p.Name</h3>
                     <p>@p.Description</p>
-                    @*<a href="#" class="btn">add to cart</a>*@
                     <button onclick="AddToCart(@p.Id)" class="btn">
                         Add To Cart
                         <i class="fas fa-cart-plus"></i>
@@ -41,6 +41,7 @@
                 </div>
             </div>
         }
+
     </div>
 </section>
 
