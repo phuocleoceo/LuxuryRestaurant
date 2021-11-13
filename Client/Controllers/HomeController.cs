@@ -58,7 +58,7 @@ namespace Client.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction(nameof(Index));
+            return View();
         }
 
         public async Task<IActionResult> Logout()
