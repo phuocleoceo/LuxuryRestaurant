@@ -8,34 +8,28 @@
 @section MYCSS{
     <link href="@Url.Content("~/css/login.css")" rel="stylesheet" />
 }
-<section>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="color"></div>
-    <div class="box">
-        <div class="square" style="--i:0;"></div>
-        <div class="square" style="--i:1;"></div>
-        <div class="square" style="--i:2;"></div>
-        <div class="square" style="--i:3;"></div>
-        <div class="square" style="--i:4;"></div>
-        <div class="container">
-            <div class="form">
-                <h2>Login Form</h2>
-                <form method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="inputBox">
-                        <input asp-for="UserName" type="text" placeholder="Username" />
-                        <span asp-validation-for="UserName" class="text-danger"></span>
-                    </div>
-                    <div class="inputBox">
-                        <input asp-for="Password" type="password" placeholder="Password" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="inputBox">
-                        <input type="submit" value="Login">
-                    </div>
-                </form>
-            </div>
-        </div>
+
+<div class="container">
+    <div class="food-img">
+        <img src="~/img/login-food.jpg" />
     </div>
-</section>
+
+    <div class="login-content">
+        <form method="post">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+            <h2 class="tiltle">Welcome to Luxury Restaurant</h2>
+            <div class="inputBox">
+                <input asp-for="UserName" type="text" placeholder="Username" />
+                @*<span asp-validation-for="UserName" class="text-danger"></span>*@
+            </div>
+            <div class="inputBox">
+                <input asp-for="Password" type="password" placeholder="Password" />
+                @*<span asp-validation-for="Password" class="text-danger"></span>*@
+            </div>
+            <div class="inputBox">
+                <input type="submit" value="Go!">
+            </div>
+        </form>
+
+    </div>
+</div>

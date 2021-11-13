@@ -1,199 +1,120 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hurricane&family=Parisienne&family=Tangerine:wght@700&display=swap");
+
+:root {
+    --green: #27ae60;
+    --black: #192a56;
+    --light-color: #666;
+    --box-shadow: 00.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Dancing Script", cursive;
 }
 
 body {
     overflow: hidden;
 }
 
-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, #f1f4f9, #dff1ff);
-}
-
-    section .color {
-        position: absolute;
-        background-color: #fff;
-        filter: blur(150px);
-    }
-
-        section .color:nth-child(1) {
-            top: -350px;
-            width: 600px;
-            height: 600px;
-            background: #2e793e;
-        }
-
-        section .color:nth-child(2) {
-            bottom: -150px;
-            left: 100px;
-            width: 500px;
-            height: 500px;
-            background: #2f5524;
-        }
-
-        section .color:nth-child(3) {
-            bottom: 50px;
-            right: 100px;
-            width: 300px;
-            height: 300px;
-            background: #78d378;
-        }
-
-.box {
-    position: relative;
-}
-
-    .box .square {
-        position: absolute;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-right: 1px solid rgba(255, 255, 255, 0.2);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        background-color: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        animation: animate 10s linear infinite;
-        animation-delay: calc(-1s * var(--i));
-    }
-
-@keyframes animate {
-    0%, 100% {
-        transform: translateY(-40px);
-    }
-
-    50% {
-        transform: translateY(40px);
-    }
-}
-
-.box .square:nth-child(1) {
-    top: -50px;
-    right: -60px;
-    width: 100px;
-    height: 100px;
-}
-
-.box .square:nth-child(2) {
-    top: 150px;
-    left: -100px;
-    width: 120px;
-    height: 120px;
-    z-index: 2;
-}
-
-.box .square:nth-child(3) {
-    top: 50px;
-    right: -60px;
-    width: 80px;
-    height: 80px;
-    z-index: 2;
-}
-
-.box .square:nth-child(4) {
-    top: -80px;
-    left: 100px;
-    width: 50px;
-    height: 50px;
-}
-
-.box .square:nth-child(5) {
-    top: -80px;
-    left: 140px;
-    width: 60px;
-    height: 60px;
-}
-
 .container {
-    position: relative;
-    width: 400px;
-    min-height: 400px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
     display: flex;
-    justify-content: center;
+    box-shadow: 0 5px 25px rgb(230, 225, 225);
+    justify-content: space-around;
+    border-radius: 0.5rem;
+    background-color: white;
+    margin: 2rem;
+    padding: 0 2rem;
+}
+
+.food-img {
+    margin: 2rem;
+}
+
+    .food-img img {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 500px;
+    }
+
+form {
+    width: 360px;
+    height: auto;
+}
+
+.login-content {
+    font-size: 2rem;
+    display: flex;
     align-items: center;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-right: 5rem;
 }
 
-.form {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-}
-
-    .form h2 {
-        position: relative;
-        color: #fff;
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        margin-bottom: 40px;
+    .login-content img {
+        height: 100px;
     }
 
-        .form h2::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 80px;
-            height: 4px;
-            background: #fff;
-        }
+    .login-content h2 {
+        font-size: 3rem;
+        margin: 0 0 30px;
+        padding: 0;
+        color: var(--black);
+        text-align: center;
+    }
 
-    .form .inputBox {
+    .login-content .inputBox input {
+        margin: 0.7rem 0;
+        border-radius: 0.5rem;
+        background: #f6f6f6;
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+        color: #1d6b3d;
         width: 100%;
-        margin-top: 20px;
+        border: 1rem;
+        box-shadow: 0 3px 5px var(--black);
+        outline: none;
     }
 
-        .form .inputBox input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            outline: none;
-            padding: 10px 20px;
-            border-radius: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-right: 1px solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            font-size: 16px;
-            letter-spacing: 1px;
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .login-content .inputBox input[type="submit"] {
+            background: var(--green);
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            font-weight: 600;
         }
 
-            .form .inputBox input::placeholder {
-                color: #fff;
+            .login-content .inputBox input[type="submit"]:hover {
+                background: var(--black);
+                letter-spacing: 0.1rem;
             }
 
-form .inputBox input[type="submit"] {
-    background: #fff;
-    color: #666;
-    max-width: 100px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-weight: 600;
+.food-img img:hover {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
 }
 
-.forget {
-    margin-top: 5px;
-    color: #fff;
+.food-img {
+    overflow: hidden;
 }
 
-    .forget a {
-        color: #fff;
-        font-weight: 600;
+    .food-img img {
+        -webkit-transition: all 0.7s ease;
+        transition: all 0.7s ease;
     }
+
+.login-content .inputBox input[type="text"]:hover {
+    box-shadow: 0px 0px 5px var(--black);
+    border: 1px solid var(--black);
+    border-radius: 0.5rem;
+}
+
+.login-content .inputBox input[type="password"]:hover {
+    box-shadow: 0px 0px 5px var(--black);
+    border: 1px solid var(--black);
+    border-radius: 0.5rem;
+}
