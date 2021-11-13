@@ -1,63 +1,23 @@
-﻿@model List<ShoppingCart>
-@{
+﻿@{
     ViewData["Title"] = "Shopping Cart";
 }
 @section MYCSS{
     <link href="@Url.Content("~/css/cart.css")" rel="stylesheet" />
 }
-@if (Model.Count > 0)
-{
-    <section class="shopping-cart-container">
-        <div class="products-container">
-            <h3 class="title">Your Food</h3>
-            <div class="box-container">
-                @foreach (ShoppingCart cart in Model)
-                {
-                    <div class="box">
-                        <button onclick="RemoveCart(@cart.Id)">
-                            <i class="fas fa-times"></i>
-                        </button>
-                        @if (cart.Food.Image != null)
-                        {
-                            var base64 = Convert.ToBase64String(cart.Food.Image);
-                            string imgsrc = "";
-                            if (string.IsNullOrEmpty(base64))
-                            {
-                                imgsrc = "https://via.placeholder.com/150";
-                            }
-                            else
-                            {
-                                imgsrc = $"data:image/jpg;base64,{base64}";
-                            }
-                            <img src=@imgsrc alt="">
-                        }
-                        <div class="content">
-                            <h3>@cart.Food.Name</h3>
-                            <span> Quantity : </span> <br>
-                            <input type="button" value="-" onclick="MinusCart(@cart.Id)">
-                            <p class="quatity">@cart.Count</p>
-                            <input type="button" value="+" onclick="PlusCart(@cart.Id)">
-                            <br>
-                            <span> Price : </span>
-                            <span class="price"> @cart.Food.Price </span>
-                        </div>
-                    </div>
-                }
-            </div>
+<section class="shopping-cart-container">
+    <div class="products-container">
+        <h3 class="title">Your Food</h3>
+        <div class="box-container">
         </div>
-        <div class="cart-total">
-            <h3 class="title"> Cart Total </h3>
-            <div class="box">
-                <h3 class="total"> Total : <span>@Model.Sum(c => c.Count * c.Food.Price).ToString()</span> </h3>
-                <button class="btn" onclick="PlaceOrder()">Place Order</button>
-            </div>
+    </div>
+    <div class="cart-total">
+        <h3 class="title"> Cart Total </h3>
+        <div class="box">
+            <h3 class="total"> Total : <span id="total-price"></span> </h3>
+            <button class="btn" onclick="PlaceOrder()">Place Order</button>
         </div>
-    </section>
-}
-else
-{
-    <div style="font-size:250%;margin-top:20vh">There are no food in your shopping cart...</div>
-}
+    </div>
+</section>
 
 @section Scripts{
     <script src="~/js/cart.js"></script>

@@ -1,9 +1,11 @@
 ﻿using Client.Repository.Interface;
+using Common.DTO;
 using Common.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -21,12 +23,27 @@ namespace Client.Controllers
             _rp_order = rp_order;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
         {
             ClaimsIdentity claimsIdentity = (ClaimsIdentity)User.Identity;
             Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             List<ShoppingCart> list = await _rp.GetCarts(Convert.ToInt32(claim.Value));
-            return View(list);
+            IEnumerable<CartVM> listCart = list.Select(c => new CartVM
+            {
+                Id = c.Id,
+                FoodName = c.Food.Name,
+                FoodPrice = c.Food.Price,
+                Count = c.Count,
+                Image = c.Food.Image != null ? $"data:image/jpg;base64,{Convert.ToBase64String(c.Food.Image)}" : "https://via.placeholder.com/150"
+            });
+            double total = list.Sum(c => c.Count * c.Food.Price);
+            return Json(new { listCart, total });
         }
 
         [HttpPost]

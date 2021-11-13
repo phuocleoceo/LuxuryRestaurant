@@ -1,7 +1,43 @@
-﻿function PlusCart(CartId) {
+﻿$(window).on('load', function () {
+    loadCartList();
+});
+
+function loadCartList() {
+    $.ajax({
+        dataType: "json",
+        type: "GET",
+        url: "/Cart/GetAll"
+    }).done((data) => {
+        $('#total-price').html(`${data.total}`);
+        const list = data.listCart;
+        list.forEach((cart) => {
+            $('.box-container').append(
+                `<div class="box">
+                        <button onclick="RemoveCart(${cart.id})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img src="${cart.image}" alt="">
+                        <div class="content">
+                            <h3>${cart.foodName}</h3>
+                            <span> Quantity : </span> <br>
+                            <input type="button" value="-" onclick="MinusCart(${cart.id})">
+                            <p class="quatity">${cart.count}</p>
+                            <input type="button" value="+" onclick="PlusCart(${cart.id})">
+                            <br>
+                            <span> Price : </span>
+                            <span class="price"> ${cart.foodPrice} </span>
+                        </div>
+                    </div>`
+            );
+        })
+    });
+}
+
+function PlusCart(CartId) {
     $.post("Cart/PlusCart", { CartId: CartId }, (data) => {
         if (data.success) {
-            location.reload();
+            $('.box-container').empty();
+            loadCartList();
         }
         else {
             toastr.error(data.message);
@@ -12,7 +48,8 @@
 function MinusCart(CartId) {
     $.post("Cart/MinusCart", { CartId: CartId }, (data) => {
         if (data.success) {
-            location.reload();
+            $('.box-container').empty();
+            loadCartList();
         }
         else {
             toastr.error(data.message);
@@ -23,7 +60,8 @@ function MinusCart(CartId) {
 function RemoveCart(CartId) {
     $.post("Cart/RemoveCart", { CartId: CartId }, (data) => {
         if (data.success) {
-            location.reload();
+            $('.box-container').empty();
+            loadCartList();
         }
         else {
             toastr.error(data.message);
@@ -32,13 +70,15 @@ function RemoveCart(CartId) {
 }
 
 function PlaceOrder(CartId) {
-    $.post("Cart/PlaceOrder", { }, (data) => {
+    $.post("Cart/PlaceOrder", {}, (data) => {
         if (data.success) {
             toastr.success(data.message);
-            location.reload();
+            $('.box-container').empty();
+            loadCartList();
         }
         else {
             toastr.error(data.message);
         }
     });
 }
+
