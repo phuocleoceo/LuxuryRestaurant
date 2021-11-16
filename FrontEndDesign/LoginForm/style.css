@@ -13,17 +13,18 @@
   font-family: "Dancing Script", cursive;
 }
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .container {
   display: flex;
+  flex-wrap: wrap;
   box-shadow: 0 5px 25px rgb(230, 225, 225);
   justify-content: space-around;
   border-radius: 0.5rem;
   background-color: white;
-  margin: 2rem;
-  padding: 0 2rem;
+  position: absolute;
 }
+
 .food-img {
   margin: 2rem;
 }

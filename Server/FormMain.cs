@@ -68,8 +68,8 @@ namespace Server
                 string request = await reader.ReadLineAsync();
                 RequestModel requestModel = JsonConvert.DeserializeObject<RequestModel>(request);
 
-                if (requestModel.Header == Constant.Place_Order) await ShowOrder(requestModel);
                 string response = await new Routing().RouteAppRequest(requestModel);
+                if (requestModel.Header == Constant.Place_Order) await ShowOrder(requestModel);
 
                 await writer.WriteLineAsync(response);
                 client.Close();

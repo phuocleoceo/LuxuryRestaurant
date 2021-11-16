@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Hurricane&family=Parisienne&family=Tangerine:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@700&family=Hurricane&family=Parisienne&family=Tangerine:wght@700&display=swap");
 :root {
   --brown: rgb(54, 31, 31);
   --green: #7fd8a4;
@@ -57,13 +59,16 @@ section:nth-child(even) {
 }
 
 .home .home-slider .slide .content span {
-  color: var(--brown);
+  color: var(--black);
   font-size: 2.5rem;
+  font-family: "Dancing Script", cursive;
 }
 
 .home .home-slider .slide .content h3 {
-  color: var(--black);
-  font-size: 7rem;
+  color: rgb(161, 21, 21);
+  font-size: 8rem;
+  text-align: center;
+  font-family: "Dancing Script", cursive;
 }
 
 .home .home-slider .slide .content p {
@@ -71,6 +76,8 @@ section:nth-child(even) {
   font-size: 2.2rem;
   padding: 0.5rem 0;
   line-height: 1.5;
+  font-family: "Cookie", cursive;
+  text-align: center;
 }
 
 .swiper-pagination-bullet-active {
