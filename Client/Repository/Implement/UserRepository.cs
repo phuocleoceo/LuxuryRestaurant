@@ -1,10 +1,10 @@
-using Client.Repository.Interface;
-using Common.DTO;
-using Common.Entities;
-using Common.Extension;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using Client.Repository.Interface;
 using System.Threading.Tasks;
+using Common.Extension;
+using Newtonsoft.Json;
+using Common.Entities;
+using Common.DTO;
 
 namespace Client.Repository.Implement
 {
@@ -14,29 +14,9 @@ namespace Client.Repository.Implement
 
         public async Task<User> LoginAsync(UserForLogin obj)
         {
-            try
-            {
-                await InitStream();
-                RequestModel rm = new RequestModel
-                {
-                    Header = Constant.Login,
-                    Payload = JsonConvert.SerializeObject(obj)
-                };
-                string rmJson = JsonConvert.SerializeObject(rm);
-                await writer.WriteLineAsync(rmJson);
-
-                string response = await reader.ReadLineAsync();
-                return JsonConvert.DeserializeObject<User>(response);
-            }
-            catch
-            {
-                return null;
-            }
-            finally
-            {
-                stream.Close();
-                client.Close();
-            }
+            string user = JsonConvert.SerializeObject(obj);
+            string response = await SendAndReceiveAsync(Constant.Login, user);
+            return response != "" ? JsonConvert.DeserializeObject<User>(response) : null;
         }
     }
 }

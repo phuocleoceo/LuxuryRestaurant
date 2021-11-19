@@ -1,10 +1,8 @@
-﻿using Client.Repository.Interface;
-using Common.DTO;
-using Common.Extension;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System;
+﻿using Microsoft.Extensions.Configuration;
+using Client.Repository.Interface;
 using System.Threading.Tasks;
+using Common.Extension;
+using System;
 
 namespace Client.Repository.Implement
 {
@@ -14,29 +12,8 @@ namespace Client.Repository.Implement
 
         public async Task<bool> PlaceOrder(int UserId)
         {
-            try
-            {
-                await InitStream();
-                RequestModel rm = new RequestModel
-                {
-                    Header = Constant.Place_Order,
-                    Payload = UserId.ToString()
-                };
-                string rmJson = JsonConvert.SerializeObject(rm);
-                await writer.WriteLineAsync(rmJson);
-
-                string response = await reader.ReadLineAsync();
-                return Convert.ToBoolean(response);
-            }
-            catch
-            {
-                return false;
-            }
-            finally
-            {
-                stream.Close();
-                client.Close();
-            }
+            string response = await SendAndReceiveAsync(Constant.Place_Order, UserId.ToString());
+            return response != "" ? Convert.ToBoolean(response) : false;
         }
     }
 }

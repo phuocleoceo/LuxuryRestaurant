@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Threading.Tasks;
-using System.Net.Sockets;
-using System.Net;
-using System.IO;
+﻿using Common.DTO;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace Client.Repository.Implement
 {
@@ -13,6 +15,7 @@ namespace Client.Repository.Implement
         protected NetworkStream stream;
         protected StreamReader reader;
         protected StreamWriter writer;
+
         protected readonly IConfiguration _configuration;
         protected IPAddress ip;
         protected int port;
@@ -31,6 +34,33 @@ namespace Client.Repository.Implement
             stream = client.GetStream();
             reader = new StreamReader(stream);
             writer = new StreamWriter(stream) { AutoFlush = true };
+        }
+
+        public async Task<string> SendAndReceiveAsync(string Header, string Body)
+        {
+            try
+            {
+                await InitStream();
+                RequestModel rm = new RequestModel
+                {
+                    Header = Header,
+                    Body = Body
+                };
+                string request = JsonConvert.SerializeObject(rm);
+                await writer.WriteLineAsync(request);
+
+                string response = await reader.ReadLineAsync();
+                return response;
+            }
+            catch
+            {
+                return "";
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+            }
         }
     }
 }

@@ -4,6 +4,6 @@
     {
         public string Header { get; set; }
 
-        public string Payload { get; set; }
+        public string Body { get; set; }
     }
 }

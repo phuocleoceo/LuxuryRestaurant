@@ -81,7 +81,7 @@ namespace Server
         private async Task ShowOrder(RequestModel requestModel)
         {
             await LoadTable();
-            int UserId = Convert.ToInt32(requestModel.Payload);
+            int UserId = Convert.ToInt32(requestModel.Body);
             User user = await _ur.FindUserById(UserId);
             string msg = $">> {user.DisplayName} đã đặt món !";
             lbMSG.Items.Add(msg);
