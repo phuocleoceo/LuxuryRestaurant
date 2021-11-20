@@ -14,4 +14,13 @@
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\dataTable\" />
+    <Folder Include="wwwroot\lib\jquery-ui\" />
+    <Folder Include="wwwroot\lib\font-awesome\" />
+    <Folder Include="wwwroot\lib\swiper\" />
+    <Folder Include="wwwroot\lib\sweet-alert\" />
+    <Folder Include="wwwroot\lib\toastr\" />
+  </ItemGroup>
+
 </Project>
