@@ -16,7 +16,7 @@ namespace Client.Repository.Implement
         {
             string user = JsonConvert.SerializeObject(obj);
             string response = await SendAndReceiveAsync(Constant.Login, user);
-            return response != "" ? JsonConvert.DeserializeObject<User>(response) : null;
+            return response != null ? JsonConvert.DeserializeObject<User>(response) : null;
         }
     }
 }

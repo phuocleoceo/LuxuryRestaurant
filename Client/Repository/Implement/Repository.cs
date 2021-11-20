@@ -1,24 +1,25 @@
-﻿using Common.DTO;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
+﻿using Microsoft.Extensions.Configuration;
+using Client.Repository.Interface;
 using System.Threading.Tasks;
+using System.Net.Sockets;
+using Newtonsoft.Json;
+using Common.DTO;
+using System.Net;
+using System.IO;
+using System;
 
 namespace Client.Repository.Implement
 {
-    public class Repository
+    public class Repository : IRepository
     {
-        protected TcpClient client;
-        protected NetworkStream stream;
-        protected StreamReader reader;
-        protected StreamWriter writer;
+        private TcpClient client;
+        private NetworkStream stream;
+        private StreamReader reader;
+        private StreamWriter writer;
 
-        protected readonly IConfiguration _configuration;
-        protected IPAddress ip;
-        protected int port;
+        private readonly IConfiguration _configuration;
+        private IPAddress ip;
+        private int port;
 
         public Repository(IConfiguration configuration)
         {
@@ -27,7 +28,7 @@ namespace Client.Repository.Implement
             port = Convert.ToInt32(_configuration.GetSection("ServerInfor:Port").Value);
         }
 
-        public async Task InitStream()
+        private async Task InitStream()
         {
             client = new TcpClient();
             await client.ConnectAsync(ip, port);
@@ -54,7 +55,7 @@ namespace Client.Repository.Implement
             }
             catch
             {
-                return "";
+                return null;
             }
             finally
             {

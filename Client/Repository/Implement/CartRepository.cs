@@ -16,32 +16,32 @@ namespace Client.Repository.Implement
         public async Task<List<ShoppingCart>> GetCarts(int UserId)
         {
             string response = await SendAndReceiveAsync(Constant.Get_Carts, UserId.ToString());
-            return response != "" ? JsonConvert.DeserializeObject<List<ShoppingCart>>(response) : null;
+            return response != null ? JsonConvert.DeserializeObject<List<ShoppingCart>>(response) : null;
         }
 
         public async Task<bool> AddToCart(ShoppingCart cart)
         {
             string newCart = JsonConvert.SerializeObject(cart);
             string response = await SendAndReceiveAsync(Constant.Add_To_Cart, newCart);
-            return response != "" ? Convert.ToBoolean(response) : false;
+            return response != null ? Convert.ToBoolean(response) : false;
         }
 
         public async Task<bool> PlusCart(int cartId)
         {
             string response = await SendAndReceiveAsync(Constant.Plus_Cart, cartId.ToString());
-            return response != "" ? Convert.ToBoolean(response) : false;
+            return response != null ? Convert.ToBoolean(response) : false;
         }
 
         public async Task<bool> MinusCart(int cartId)
         {
             string response = await SendAndReceiveAsync(Constant.Minus_Cart, cartId.ToString());
-            return response != "" ? Convert.ToBoolean(response) : false;
+            return response != null ? Convert.ToBoolean(response) : false;
         }
 
         public async Task<bool> RemoveCart(int cartId)
         {
             string response = await SendAndReceiveAsync(Constant.Remove_Cart, cartId.ToString());
-            return response != "" ? Convert.ToBoolean(response) : false;
+            return response != null ? Convert.ToBoolean(response) : false;
         }
     }
 }

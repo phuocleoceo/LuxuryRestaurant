@@ -13,7 +13,7 @@ namespace Client.Repository.Implement
         public async Task<bool> PlaceOrder(int UserId)
         {
             string response = await SendAndReceiveAsync(Constant.Place_Order, UserId.ToString());
-            return response != "" ? Convert.ToBoolean(response) : false;
+            return response != null ? Convert.ToBoolean(response) : false;
         }
     }
 }
