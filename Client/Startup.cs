@@ -38,6 +38,7 @@ namespace Client
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IRequestRepository, RequestRepository>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 

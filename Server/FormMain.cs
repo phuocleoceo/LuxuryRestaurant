@@ -70,6 +70,7 @@ namespace Server
 
                 string response = await new Routing().RouteAppRequest(requestModel);
                 if (requestModel.Header == Constant.Place_Order) await ShowOrder(requestModel);
+                if (requestModel.Header == Constant.Message_Request) await ShowRequest(requestModel);
 
                 await writer.WriteLineAsync(response);
                 client.Close();
@@ -83,7 +84,7 @@ namespace Server
             await LoadTable();
             int UserId = Convert.ToInt32(requestModel.Body);
             User user = await _ur.FindUserById(UserId);
-            string msg = $">> {user.DisplayName} đã đặt món !";
+            string msg = $"> {user.DisplayName} đã đặt món !";
             lbMSG.Items.Add(msg);
         }
 
@@ -177,6 +178,16 @@ namespace Server
                 btnPurchase.Enabled = false;
                 btnPrint.Enabled = false;
             }
+        }
+        #endregion
+
+        #region Request
+        private async Task ShowRequest(RequestModel requestModel)
+        {
+            UserRequest ur = JsonConvert.DeserializeObject<UserRequest>(requestModel.Body);
+            User user = await _ur.FindUserById(ur.UserId);
+            string msg = $"> {user.DisplayName} : {ur.Message}";
+            lbMSG.Items.Add(msg);
         }
         #endregion
 

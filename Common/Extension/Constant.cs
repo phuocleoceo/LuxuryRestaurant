@@ -20,5 +20,8 @@
         public const string Remove_Cart = "Remove Cart";
 
         public const string Place_Order = "Place Order";
+
+        public const string Message_Request = "Message Request";
+        public const string Ask_For_Pay = "Ask For Pay Request";
     }
 }

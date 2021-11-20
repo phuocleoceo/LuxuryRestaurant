@@ -9,15 +9,21 @@
     <link href="@Url.Content("~/css/upsert.css")" rel="stylesheet" />
 }
 
-<form method="post" enctype="multipart/form-data">
-    <section class="create-food-container">
-        <h3 class="title">Request</h3>
-        <div class="table-Container">
-            <div class="box-container">
-                <div class="form_row">
-                    <label class="form_label">Message</label>
-                    <input name="message" class="form_input" />
-                </div>                
+<section class="create-food-container">
+    <h3 class="title">Request</h3>
+    <div class="table-Container">
+        <div class="box-container">
+            <div class="form_row">
+                <label class="form_label">Message</label>
+                <input id="message" class="form_input" />
+            </div>
         </div>
-    </section>
-</form>
+        <div class="action-create">
+            <button onclick="SendRequest()" class="btn">Send Request</button>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/request.js"></script>
+}

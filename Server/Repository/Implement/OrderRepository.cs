@@ -51,6 +51,8 @@ namespace Server.Repository.Implement
                 .Where(c => c.UserId == UserId && !c.IsPaid).ToListAsync();
         }
 
+        // Mỗi User có thể PlaceOrder nhiều lần nên ta cần lấy danh sách đặt món chi tiết
+        // của nhiều OrderHeader
         public async Task<List<OrderDetail>> GetOrderDetail(List<OrderHeader> listOrder)
         {
             List<OrderDetail> listOrderDetail = new List<OrderDetail>();
