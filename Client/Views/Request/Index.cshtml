@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Request";
+    ViewData["HomeActive"] = "";
+    ViewData["MenuActive"] = "";
+    ViewData["FoodActive"] = "";
+    ViewData["RequestActive"] = "active";
+}
+@section MYCSS{
+    <link href="@Url.Content("~/css/upsert.css")" rel="stylesheet" />
+}
+
+<form method="post" enctype="multipart/form-data">
+    <section class="create-food-container">
+        <h3 class="title">Request</h3>
+        <div class="table-Container">
+            <div class="box-container">
+                <div class="form_row">
+                    <label class="form_label">Message</label>
+                    <input name="message" class="form_input" />
+                </div>                
+        </div>
+    </section>
+</form>
