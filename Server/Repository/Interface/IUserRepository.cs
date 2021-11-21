@@ -9,9 +9,9 @@ namespace Server.Repository.Interface
     {
         Task<User> LoginAsync(UserForLogin obj);
 
-        Task<User> FindUserById(int UserId);
+        Task<string> GetDisplayName(int UserId);
 
-        Task<List<User>> LoadUserWithOrder();
+        Task<List<User>> LoadCustomer();
 
         Task<bool> SaveAsync();
     }

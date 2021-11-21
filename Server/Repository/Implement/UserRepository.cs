@@ -32,12 +32,13 @@ namespace Server.Repository.Implement
             return user;
         }
 
-        public async Task<User> FindUserById(int UserId)
+        public async Task<string> GetDisplayName(int UserId)
         {
-            return await _db.Users.FindAsync(UserId);
+            User user = await _db.Users.FindAsync(UserId);
+            return user.DisplayName;
         }
 
-        public async Task<List<User>> LoadUserWithOrder()
+        public async Task<List<User>> LoadCustomer()
         {
             return await _db.Users
                 .Where(c => c.Role == Constant.Role_Customer).ToListAsync();

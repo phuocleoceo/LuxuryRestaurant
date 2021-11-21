@@ -83,8 +83,8 @@ namespace Server
         {
             await LoadTable();
             int UserId = Convert.ToInt32(requestModel.Body);
-            User user = await _ur.FindUserById(UserId);
-            string msg = $"> {user.DisplayName} đã đặt món !";
+            string DisplayName = await _ur.GetDisplayName(UserId);
+            string msg = $"> {DisplayName} đã đặt món !";
             lbMSG.Items.Add(msg);
         }
 
@@ -93,7 +93,7 @@ namespace Server
             try
             {
                 pnlTable.Controls.Clear();
-                List<User> listUser = await _ur.LoadUserWithOrder();
+                List<User> listUser = await _ur.LoadCustomer();
                 int x = 10;
                 int y = 10;
                 for (int i = 0; i < listUser.Count; i++)
@@ -185,8 +185,8 @@ namespace Server
         private async Task ShowRequest(RequestModel requestModel)
         {
             UserRequest ur = JsonConvert.DeserializeObject<UserRequest>(requestModel.Body);
-            User user = await _ur.FindUserById(ur.UserId);
-            string msg = $"> {user.DisplayName} : {ur.Message}";
+            string DisplayName = await _ur.GetDisplayName(ur.UserId);
+            string msg = $"> {DisplayName} : {ur.Message}";
             lbMSG.Items.Add(msg);
         }
         #endregion
