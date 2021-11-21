@@ -12,19 +12,17 @@
 <section class="create-food-container">
     <h3 class="title">Request</h3>
 
-    <form onsubmit="SendRequest(); return false;">
-        <div class="table-Container">
-            <div class="box-container">
-                <div class="form_row">
-                    <label class="form_label">Message</label>
-                    <input id="message" class="form_input" />
-                </div>
-            </div>
-            <div class="action-create">
-                <button type="submit" class="btn">Send Request</button>
+    <div class="table-Container">
+        <div class="box-container">
+            <div class="form_row">
+                <label class="form_label">Message</label>
+                <textarea id="message" class="form_area" rows="3"></textarea>
             </div>
         </div>
-    </form>
+        <div class="action-create">
+            <button onclick="SendRequest()" class="btn">Send Request</button>
+        </div>
+    </div>
 
 </section>
 
