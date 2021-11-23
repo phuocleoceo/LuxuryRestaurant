@@ -26,10 +26,14 @@ namespace Server
         private StreamWriter writer;
         private readonly IUserRepository _ur;
         private readonly IOrderRepository _or;
+        private readonly IPAddress IPAddress;
+        private readonly int port;
 
-        public FormMain()
+        public FormMain(IPAddress IPAddress, int port)
         {
             InitializeComponent();
+            this.IPAddress = IPAddress;
+            this.port = port;
             _ur = new UserRepository();
             _or = new OrderRepository();
         }
@@ -45,9 +49,7 @@ namespace Server
 
         private void InitServer()
         {
-            IPAddress ip = IPAddress.Parse(ConfigurationManager.AppSettings["IP"]);
-            int port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]);
-            server = new TcpListener(ip, port);
+            server = new TcpListener(IPAddress, port);
             server.Start(10);
             lblHeader.Text = $"<< Server started at {server.LocalEndpoint} >>";
         }
