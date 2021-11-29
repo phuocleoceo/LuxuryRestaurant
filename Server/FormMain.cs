@@ -46,7 +46,6 @@ namespace Server
         }
 
         #region Socket
-
         private void InitServer()
         {
             server = new TcpListener(IPAddress, port);

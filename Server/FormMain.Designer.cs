@@ -227,6 +227,7 @@ namespace Server
             this.Controls.Add(this.grbTable);
             this.Controls.Add(this.lblHeader);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "Luxury Restaurant";
             this.Load += new System.EventHandler(this.FormMain_Load);
