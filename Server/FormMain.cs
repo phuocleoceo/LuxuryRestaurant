@@ -150,15 +150,15 @@ namespace Server
             // Khởi tạo lại printContent
             printContent.Clear();
             printContent.AppendLine("\t\t\t\tLuxury Restaurant P&N\n");
-            printContent.AppendLine("\t\t\t\tHoa don thanh toan\n");
+            printContent.AppendLine("\t\t\t\tHoá đơn thanh toán\n");
 
 
             List<OrderHeader> order = await _or.GetOrderOfUser(UserId);
             if (order.Count > 0)
             {
-                printContent.AppendLine("\t\t\tNgay dat mon : " + order.Last().OrderDate);
-                printContent.AppendLine("\t\t\tNgay thanh toan : " + DateTime.Now);
-                printContent.AppendLine($"\n{"Mon an",-40}\t{"Don gia",20}\t{"So luong",20}\t{"Thanh Tien",20}");
+                printContent.AppendLine("\t\t\tNgày đặt món : " + order.Last().OrderDate);
+                printContent.AppendLine("\t\t\tNgày thanh toán : " + DateTime.Now);
+                printContent.AppendLine($"\n{"Món ăn",-40}\t{"Đơn giá",20}\t{"Số lượng",20}\t{"Thành tiền",20}");
 
                 pnlOrder.Controls.Clear();
                 double total = order.Sum(c => c.OrderTotal);
@@ -186,7 +186,7 @@ namespace Server
                     pnlOrder.Controls.Add(lbl);
                     printContent.AppendLine($"{FoodName,-40}\t{FoodPrice,20}\t{OrderCount,20}\t{FoodPrice * OrderCount,20}");
                 }
-                printContent.AppendLine("\n\n\t\t\t\t>> Tong tien : " + total + " VNĐ");
+                printContent.AppendLine("\n\n\t\t\t\t>> Tổng : " + total + " VNĐ");
                 btnPurchase.Enabled = true;
                 btnPrint.Enabled = true;
             }
