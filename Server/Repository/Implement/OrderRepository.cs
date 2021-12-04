@@ -1,11 +1,11 @@
-﻿using Common.Entities;
-using Microsoft.EntityFrameworkCore;
-using Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
 using Server.Repository.Interface;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Common.Entities;
+using Server.Data;
+using System.Linq;
+using System;
 
 namespace Server.Repository.Implement
 {

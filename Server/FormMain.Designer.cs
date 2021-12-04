@@ -45,6 +45,8 @@ namespace Server
             this.label1 = new System.Windows.Forms.Label();
             this.btnPurchase = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.printDialogLR = new System.Windows.Forms.PrintDialog();
+            this.printDocumentLR = new System.Drawing.Printing.PrintDocument();
             this.grbTable.SuspendLayout();
             this.grbMSG.SuspendLayout();
             this.grbOrder.SuspendLayout();
@@ -54,7 +56,7 @@ namespace Server
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblHeader.Location = new System.Drawing.Point(295, 9);
+            this.lblHeader.Location = new System.Drawing.Point(305, 5);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(189, 21);
             this.lblHeader.TabIndex = 0;
@@ -62,11 +64,13 @@ namespace Server
             // 
             // lbMSG
             // 
+            this.lbMSG.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbMSG.FormattingEnabled = true;
+            this.lbMSG.HorizontalScrollbar = true;
             this.lbMSG.ItemHeight = 21;
-            this.lbMSG.Location = new System.Drawing.Point(6, 30);
+            this.lbMSG.Location = new System.Drawing.Point(6, 24);
             this.lbMSG.Name = "lbMSG";
-            this.lbMSG.Size = new System.Drawing.Size(221, 361);
+            this.lbMSG.Size = new System.Drawing.Size(240, 361);
             this.lbMSG.TabIndex = 1;
             // 
             // pnlTable
@@ -79,7 +83,7 @@ namespace Server
             // grbTable
             // 
             this.grbTable.Controls.Add(this.pnlTable);
-            this.grbTable.Location = new System.Drawing.Point(26, 55);
+            this.grbTable.Location = new System.Drawing.Point(28, 55);
             this.grbTable.Name = "grbTable";
             this.grbTable.Size = new System.Drawing.Size(263, 403);
             this.grbTable.TabIndex = 3;
@@ -89,9 +93,9 @@ namespace Server
             // grbMSG
             // 
             this.grbMSG.Controls.Add(this.lbMSG);
-            this.grbMSG.Location = new System.Drawing.Point(714, 55);
+            this.grbMSG.Location = new System.Drawing.Point(701, 55);
             this.grbMSG.Name = "grbMSG";
-            this.grbMSG.Size = new System.Drawing.Size(233, 403);
+            this.grbMSG.Size = new System.Drawing.Size(252, 403);
             this.grbMSG.TabIndex = 4;
             this.grbMSG.TabStop = false;
             this.grbMSG.Text = "Thông điệp :";
@@ -105,7 +109,7 @@ namespace Server
             this.grbOrder.Controls.Add(this.label3);
             this.grbOrder.Controls.Add(this.label2);
             this.grbOrder.Controls.Add(this.label1);
-            this.grbOrder.Location = new System.Drawing.Point(339, 55);
+            this.grbOrder.Location = new System.Drawing.Point(336, 55);
             this.grbOrder.Name = "grbOrder";
             this.grbOrder.Size = new System.Drawing.Size(322, 397);
             this.grbOrder.TabIndex = 5;
@@ -214,6 +218,14 @@ namespace Server
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // printDialogLR
+            // 
+            this.printDialogLR.UseEXDialog = true;
+            // 
+            // printDocumentLR
+            // 
+            this.printDocumentLR.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentLR_PrintPage);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -229,6 +241,7 @@ namespace Server
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Luxury Restaurant";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.grbTable.ResumeLayout(false);
@@ -257,6 +270,8 @@ namespace Server
         private System.Windows.Forms.Button btnPurchase;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label lblTableName;
+        private System.Windows.Forms.PrintDialog printDialogLR;
+        private System.Drawing.Printing.PrintDocument printDocumentLR;
     }
 }
 
