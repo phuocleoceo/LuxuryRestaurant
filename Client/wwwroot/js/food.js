@@ -5,8 +5,8 @@
 function Delete(_url) {
     //Sweet Alert
     swal({
-        title: "Confirm delete this food ?",
-        text: "It will never be able to restore !",
+        title: "Xác nhận xoá món ăn ?",
+        text: "Hành động này không thể hoàn tác !",
         icon: "warning",
         button: true,
         showCancelButton: true,

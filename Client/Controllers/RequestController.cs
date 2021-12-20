@@ -35,9 +35,9 @@ namespace Client.Controllers
             };
             if (!await _rp.SendRequest(ur))
             {
-                return Json(new { success = false, message = "Send Failure" });
+                return Json(new { success = false, message = "Gửi thất bại" });
             }
-            return Json(new { success = true, message = "Send Success" });
+            return Json(new { success = true, message = "Gửi thành công" });
         }
     }
 }

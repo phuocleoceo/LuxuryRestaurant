@@ -53,7 +53,7 @@ namespace Server
         {
             server = new TcpListener(IPAddress, port);
             server.Start(10);
-            lblHeader.Text = $"<< Server started at {server.LocalEndpoint} >>";
+            lblHeader.Text = $"<< Server : {server.LocalEndpoint} >>";
         }
 
         private async Task InitStream()

@@ -54,7 +54,6 @@ namespace Client.Controllers
 
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 HttpContext.Session.SetString("DisplayName", userLogin.DisplayName);
-                TempData["Alert"] = "Welcome " + userLogin.UserName;
 
                 return RedirectToAction(nameof(Index));
             }

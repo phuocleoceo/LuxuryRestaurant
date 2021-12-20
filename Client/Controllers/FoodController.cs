@@ -100,11 +100,11 @@ namespace Client.Controllers
             Food obj = await _rp.GetAsync(id);
             if (obj == null || !await _rp.DeleteAsync(id))
             {
-                return Json(new { success = false, message = "Delete Failure" });
+                return Json(new { success = false, message = "Xoá thất bại" });
             }
             else
             {
-                return Json(new { success = true, message = "Delete Successfully" });
+                return Json(new { success = true, message = "Xoá thành công" });
             }
         }
     }

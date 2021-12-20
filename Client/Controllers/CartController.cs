@@ -40,7 +40,7 @@ namespace Client.Controllers
                 FoodName = c.Food.Name,
                 FoodPrice = c.Food.Price,
                 Count = c.Count,
-                Image = c.Food.Image != null ? $"data:image/jpg;base64,{Convert.ToBase64String(c.Food.Image)}" : "https://via.placeholder.com/150"
+                Image = c.Food.Image != null ? $"data:image/jpg;base64,{Convert.ToBase64String(c.Food.Image)}" : "~/img/150.png"
             });
             double total = list.Sum(c => c.Count * c.Food.Price);
             return Json(new { listCart, total });
@@ -53,7 +53,7 @@ namespace Client.Controllers
             Claim claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             if (claim == null)
             {
-                return Json(new { success = false, message = "Please Login First" });
+                return Json(new { success = false, message = "Hãy đăng nhập trước" });
             }
             ShoppingCart cart = new ShoppingCart()
             {
@@ -62,9 +62,9 @@ namespace Client.Controllers
             };
             if (!await _rp.AddToCart(cart))
             {
-                return Json(new { success = false, message = "Add To Cart Failure" });
+                return Json(new { success = false, message = "Thêm thất bại" });
             }
-            return Json(new { success = true, message = "Added To Cart" });
+            return Json(new { success = true, message = "Đã thêm vào giỏ" });
         }
 
         [HttpPost]
@@ -72,9 +72,9 @@ namespace Client.Controllers
         {
             if (!await _rp.PlusCart(cartId))
             {
-                return Json(new { success = false, message = "Plus Cart Failure" });
+                return Json(new { success = false, message = "Tăng số lượng thất bại" });
             }
-            return Json(new { success = true, message = "Plus Cart Success" });
+            return Json(new { success = true, message = "Tăng số lượng thành công" });
         }
 
         [HttpPost]
@@ -82,9 +82,9 @@ namespace Client.Controllers
         {
             if (!await _rp.MinusCart(cartId))
             {
-                return Json(new { success = false, message = "Minus Cart Failure" });
+                return Json(new { success = false, message = "Giảm số lượng thất bại" });
             }
-            return Json(new { success = true, message = "Minus Cart Success" });
+            return Json(new { success = true, message = "Giảm số lượng thành công" });
         }
 
         [HttpPost]
@@ -92,9 +92,9 @@ namespace Client.Controllers
         {
             if (!await _rp.RemoveCart(cartId))
             {
-                return Json(new { success = false, message = "Remove Cart Failure" });
+                return Json(new { success = false, message = "Xoá thất bại" });
             }
-            return Json(new { success = true, message = "Remove Cart Success" });
+            return Json(new { success = true, message = "Xoá thành công" });
         }
 
         [HttpPost]
@@ -105,9 +105,9 @@ namespace Client.Controllers
             int UserId = Convert.ToInt32(claim.Value);
             if (!await _rp_order.PlaceOrder(UserId))
             {
-                return Json(new { success = false, message = "Place Order Failure" });
+                return Json(new { success = false, message = "Đặt món thất bại" });
             }
-            return Json(new { success = true, message = "Place Order Success" });
+            return Json(new { success = true, message = "Thành công đặt món" });
         }
     }
 }

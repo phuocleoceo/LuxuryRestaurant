@@ -46,7 +46,7 @@ namespace Server
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 28);
             this.label1.TabIndex = 0;
-            this.label1.Text = "IPAddress : ";
+            this.label1.Text = "Địa chỉ IP : ";
             // 
             // txtIPAddress
             // 
@@ -74,7 +74,7 @@ namespace Server
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 28);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Port : ";
+            this.label2.Text = "Cổng : ";
             // 
             // btnStart
             // 
@@ -83,9 +83,9 @@ namespace Server
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnStart.Location = new System.Drawing.Point(97, 133);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 43);
+            this.btnStart.Size = new System.Drawing.Size(90, 43);
             this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Bắt đầu";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -98,7 +98,7 @@ namespace Server
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 43);
             this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
