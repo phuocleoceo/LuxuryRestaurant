@@ -19,12 +19,12 @@ function loadCartList() {
                         <img src="${cart.image}" alt="">
                         <div class="content">
                             <h3>${cart.foodName}</h3>
-                            <span> Quantity : </span> <br>
+                            <span> Số lượng : </span> <br>
                             <input type="button" value="-" onclick="MinusCart(${cart.id})">
                             <p class="quatity">${cart.count}</p>
                             <input type="button" value="+" onclick="PlusCart(${cart.id})">
                             <br>
-                            <span> Price : </span>
+                            <span> Giá : </span>
                             <span class="price"> ${cart.foodPrice} </span>
                         </div>
                     </div>`
