@@ -1,24 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Shopping Cart";
+    ViewData["Title"] = "Giỏ hàng";
 }
 @section MYCSS{
-    <link href="@Url.Content("~/css/cart.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/cart.css")" rel="stylesheet" />
 }
 <section class="shopping-cart-container">
     <div class="products-container">
-        <h3 class="title">Your Food</h3>
+        <h3 class="title">Danh sách món</h3>
         <div class="box-container">
         </div>
     </div>
     <div class="cart-total">
-        <h3 class="title"> Cart Total </h3>
         <div class="box">
-            <h3 class="total"> Total : <span id="total-price"></span> </h3>
-            <button class="btn" onclick="PlaceOrder()">Place Order</button>
+            <h3 class="total"> Tổng tiền : <span id="total-price"></span> </h3>
+            <button class="btn" onclick="PlaceOrder()">Xác nhận đặt món</button>
         </div>
     </div>
 </section>
 
 @section Scripts{
-    <script src="~/js/cart.js"></script>
+<script src="~/js/cart.js"></script>
 }

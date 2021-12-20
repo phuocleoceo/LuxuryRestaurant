@@ -1,5 +1,5 @@
 ﻿@{
-	ViewData["Title"] = "Request";
+	ViewData["Title"] = "Yêu cầu";
 	ViewData["HomeActive"] = "";
 	ViewData["MenuActive"] = "";
 	ViewData["FoodActive"] = "";
@@ -10,18 +10,18 @@
 }
 
 <section class="create-food-container">
-	<h3 class="title">Request</h3>
+	<h3 class="title">Gửi yêu cầu</h3>
 
 	<div class="table-Container">
 		<div class="box-container">
 			<div class="form_row">
-				<label class="form_label">Message</label>
+				<label class="form_label">Thông điệp</label>
 				<textarea id="message" class="form_area" rows="3"></textarea>
 			</div>
 		</div>
 		<div class="action-create">
-			<button onclick="SendRequest()" class="btn">Send Request</button>
-			<button onclick="AskForPay()" class="btn">Ask For Pay</button>
+			<button onclick="SendRequest()" class="btn">Gửi đi</button>
+			<button onclick="AskForPay()" class="btn">Gọi thanh toán</button>
 		</div>
 	</div>
 	<div>

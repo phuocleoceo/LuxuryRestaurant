@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Food>
 @{
-    ViewData["Title"] = "Food";
+    ViewData["Title"] = "Quán lý món ăn";
     ViewData["HomeActive"] = "";
     ViewData["MenuActive"] = "";
     ViewData["FoodActive"] = "active";
     ViewData["RequestActive"] = "";
 }
 @section MYCSS{
-    <link href="@Url.Content("~/css/food.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/food.css")" rel="stylesheet" />
 }
 <section class="manage-container">
     <div class="table-Container">
@@ -15,17 +15,17 @@
             <p class="title">Quản Lý Món Ăn</p>
             <a asp-action="Upsert" class="upsert">
                 <i class="fas fa-plus"></i> &nbsp;
-                Create New Food
+                Tạo món mới
             </a>
         </div>
         <div class="table-box">
             <table id="food-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Decription</th>
-                        <th>Action</th>
+                        <th>Tên</th>
+                        <th>Giá</th>
+                        <th>Mô tả</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
 
@@ -51,7 +51,7 @@
 </section>
 
 @section Scripts{
-    <script src="~/lib/dataTable/jquery.dataTables.min.js"></script>
-    <script src="~/lib/sweet-alert/sweetalert.min.js"></script>
-    <script src="~/js/food.js"></script>
+<script src="~/lib/dataTable/jquery.dataTables.min.js"></script>
+<script src="~/lib/sweet-alert/sweetalert.min.js"></script>
+<script src="~/js/food.js"></script>
 }

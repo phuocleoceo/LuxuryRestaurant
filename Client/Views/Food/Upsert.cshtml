@@ -1,17 +1,17 @@
 ﻿@model Food
 @{
-    ViewData["Title"] = "Upsert Food";
-    var title = "Create Food";
+    ViewData["Title"] = "Sửa món ăn";
+    var title = "Tạo món ăn";
 }
 @section MYCSS{
-    <link href="@Url.Content("~/css/upsert.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/upsert.css")" rel="stylesheet" />
 }
 
 <form method="post" enctype="multipart/form-data">
     <section class="create-food-container">
         @if (Model.Id != 0)
         {
-            title = "Edit Food";
+            title = "Sửa món ăn";
         }
         <h3 class="title">@title</h3>
         <div class="table-Container">
@@ -38,19 +38,18 @@
                 </div>
                 <div class="form_row">
                     <label asp-for="Image" class="form_label"></label>
-                    <input type="file" asp-for="Image" id="projectImage"
-                           name="files" multiple class="form_input" />
+                    <input type="file" asp-for="Image" id="projectImage" name="files" multiple class="form_input" />
                 </div>
                 <div class="action-create">
                     @if (Model.Id != 0)
                     {
-                        <button type="submit" class="btn">Update Food</button>
+                        <button type="submit" class="btn">Cập nhật</button>
                     }
                     else
                     {
-                        <button type="submit" class="btn">Create Food</button>
+                        <button type="submit" class="btn">Tạo mới</button>
                     }
-                    <a asp-action="Index" class="btn">Back to List</a>
+                    <a asp-action="Index" class="btn">Quay lại</a>
                 </div>
 
             </div>
@@ -76,5 +75,5 @@
 </form>
 
 @section Scripts{
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
 }
