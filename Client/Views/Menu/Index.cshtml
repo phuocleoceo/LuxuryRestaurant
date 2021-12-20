@@ -7,7 +7,7 @@
     ViewData["RequestActive"] = "";
 }
 @section MYCSS{
-    <link href="@Url.Content("~/css/menu.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/menu.css")" rel="stylesheet" />
 }
 
 <section class="menu" id="menu">
@@ -35,7 +35,7 @@
                     <h3>@p.Name</h3>
                     <p>@p.Description</p>
                     <button onclick="AddToCart(@p.Id)" class="btn">
-                        Add To Cart
+                        Thêm vào giỏ
                         <i class="fas fa-cart-plus"></i>
                     </button>
                     <span class="price">@((p.Price/1000).ToString()+" K")</span>
@@ -47,5 +47,5 @@
 </section>
 
 @section Scripts{
-    <script src="~/js/menu.js"></script>
+<script src="~/js/menu.js"></script>
 }

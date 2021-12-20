@@ -1,12 +1,12 @@
 ﻿@model UserForLogin
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Đăng nhập";
 }
 @{
     Layout = "_PrivateLayout";
 }
 @section MYCSS{
-    <link href="@Url.Content("~/css/login.css")" rel="stylesheet" />
+<link href="@Url.Content("~/css/login.css")" rel="stylesheet" />
 }
 
 <div class="container">
@@ -17,17 +17,17 @@
     <div class="login-content">
         <form method="post">
             <div asp-validation-summary="ModelOnly" style="color:red;font-size:1rem"></div>
-            <h2 class="tiltle">Welcome to Luxury Restaurant</h2>
+            <h2 class="tiltle">Luxury Restaurant</h2>
             <div class="inputBox">
-                <input asp-for="UserName" type="text" placeholder="Username" />
+                <input asp-for="UserName" type="text" placeholder="Tên đăng nhập" />
                 <span asp-validation-for="UserName" style="color:red;font-size:1.2rem"></span>
             </div>
             <div class="inputBox">
-                <input asp-for="Password" type="password" placeholder="Password" />
+                <input asp-for="Password" type="password" placeholder="Mật khẩu" />
                 <span asp-validation-for="Password" style="color:red;font-size:1.2rem"></span>
             </div>
             <div class="inputBox">
-                <input type="submit" value="Go!">
+                <input type="submit" value="Triển !">
             </div>
         </form>
     </div>

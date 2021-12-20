@@ -9,15 +9,15 @@
 <header>
     <a asp-controller="Home" asp-action="Index" class="logo">Luxury Restaurant</a>
     <nav class="navbar">
-        <a class=@ViewData["HomeActive"] asp-controller="Home" asp-action="Index">Home</a>
+        <a class=@ViewData["HomeActive"] asp-controller="Home" asp-action="Index">Trang chủ</a>
         <a class=@ViewData["MenuActive"] asp-controller="Menu" asp-action="Index">Menu</a>
         @if (IsLoggedIn && (User.IsInRole(Constant.Role_Admin)))
         {
-            <a class=@ViewData["FoodActive"] asp-controller="Food" asp-action="Index">Food</a>
+            <a class=@ViewData["FoodActive"] asp-controller="Food" asp-action="Index">Quản lý</a>
         }
         @if (IsLoggedIn && (User.IsInRole(Constant.Role_Customer)))
         {
-            <a class=@ViewData["RequestActive"] asp-controller="Request" asp-action="Index">Request</a>
+            <a class=@ViewData["RequestActive"] asp-controller="Request" asp-action="Index">Yêu cầu</a>
         }
     </nav>
 
