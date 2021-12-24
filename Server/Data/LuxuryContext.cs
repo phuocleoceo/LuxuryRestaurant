@@ -7,13 +7,11 @@ namespace Server.Data
     public class LuxuryContext : DbContext
     {
         private readonly string CNS = @"Server=(LocalDB)\MSSQLLocalDB;Database=LuxuryRestaurant;
-                            Trusted_Connection=True;MultipleActiveResultSets=true";
+                             Trusted_Connection=True;MultipleActiveResultSets=true";
         //private readonly string CNS = @"workstation id=LuxuryRestaurant.mssql.somee.com;
         //                                packet size=4096;user id=phuocleoceo_SQLLogin_1;
-        //                                pwd=8q9d4uns68;
-        //                                data source=LuxuryRestaurant.mssql.somee.com;
-        //                                persist security info=False;
-        //                                initial catalog=LuxuryRestaurant";
+        //                                pwd=8q9d4uns68;data source=LuxuryRestaurant.mssql.somee.com;
+        //                                persist security info=False;initial catalog=LuxuryRestaurant";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
