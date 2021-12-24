@@ -52,7 +52,7 @@ namespace Server
         private void InitServer()
         {
             server = new TcpListener(IPAddress, port);
-            server.Start(10);
+            server.Start();
             lblHeader.Text = $"<< Server : {server.LocalEndpoint} >>";
         }
 
