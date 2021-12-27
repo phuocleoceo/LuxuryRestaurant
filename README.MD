@@ -1,17 +1,9 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 
 <p align="center">
-  <p>
-    <img src="/Client/wwwroot/favicon.ico" width=100% alt="Logo">
+  <p align="center">
+    <img src="/Client/wwwroot/favicon.ico" width=20% alt="Logo">
   </p>
 
   <h3 align="center">LUXURY RESTAURANT</h3>
@@ -52,8 +44,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-![Screen Shot](/screen-shot/1.jpg)
 
 Luxury Restaurant is an application built for PBL4 about OS & CN.
 It will help restaurant manage more effective and provide customers a better experience . 
@@ -100,7 +90,7 @@ Necessary program to build and run this code:
 **1. FormOrigin**
     <br/>
     <br/>
-    ![form_origin](/FrontEndDesign/ScreenShot/4.png)
+    <img src="/FrontEndDesign/ScreenShot/4.png" width=50% alt="FormOrigin">
     
 **2. FormMain**
     <br/>
